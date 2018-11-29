@@ -1,5 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace PhotoLibrarizerCli.Tools.FileSystem
 {
@@ -8,12 +9,23 @@ namespace PhotoLibrarizerCli.Tools.FileSystem
 
         public List<string> GetFilesInPath(string path)
         {
-            throw new NotImplementedException();
+            return GetSeekedFiles(path, new ListOfDefaultExtensions().Extensions());
         }
 
         public List<string> GetFilesInPath(string path, List<string> extensions)
         {
-            throw new NotImplementedException();
+            return GetSeekedFiles(path, extensions.ToArray());
+        }
+
+        private List<string> GetSeekedFiles(string pathtolookfor, string[] allowedExtensions)
+        {
+
+            List<string> files = Directory
+                  .GetFiles(pathtolookfor, "*.*", SearchOption.AllDirectories)
+                  .Where(file => allowedExtensions.Any(file.EndsWith))?
+                  .ToList();
+            return files;
+
         }
     }
 }
