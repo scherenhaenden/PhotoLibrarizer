@@ -10,6 +10,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLibrarizerTests", "PhotoLibrarizerTests\PhotoLibrarizerTests.csproj", "{AAEC1848-5AA9-4F5E-BF72-7B6ECEA37603}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -24,5 +26,9 @@ Global
 		{BFBCF5F6-1708-4916-8CA9-FC85C86B2556}.Debug|x86.Build.0 = Debug|Any CPU
 		{BFBCF5F6-1708-4916-8CA9-FC85C86B2556}.Release|x86.ActiveCfg = Release|Any CPU
 		{BFBCF5F6-1708-4916-8CA9-FC85C86B2556}.Release|x86.Build.0 = Release|Any CPU
+		{AAEC1848-5AA9-4F5E-BF72-7B6ECEA37603}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AAEC1848-5AA9-4F5E-BF72-7B6ECEA37603}.Debug|x86.Build.0 = Debug|Any CPU
+		{AAEC1848-5AA9-4F5E-BF72-7B6ECEA37603}.Release|x86.ActiveCfg = Release|Any CPU
+		{AAEC1848-5AA9-4F5E-BF72-7B6ECEA37603}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
