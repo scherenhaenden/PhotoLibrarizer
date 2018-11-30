@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Net;
+
 namespace PhotoLibrarizerTests.Tools
 {
     public class DownloadTestFile
@@ -12,10 +14,10 @@ namespace PhotoLibrarizerTests.Tools
 
         }
 
-        public void Download()
+        private void Download(string url, string filename)
         {
             WebClient myWebClient = new WebClient();
-            myWebClient.DownloadFile(myStringWebResource, fileName);
+            myWebClient.DownloadFile(url, filename);
         }
     
     }

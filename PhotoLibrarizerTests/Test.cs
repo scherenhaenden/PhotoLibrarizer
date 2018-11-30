@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using PhotoLibrarizerTests.Tools;
 using System;
 namespace PhotoLibrarizerTests
 {
@@ -7,7 +8,7 @@ namespace PhotoLibrarizerTests
     {
         public Test()
         {
-
+            new DownloadTestFile().Run();
         }
 
 
