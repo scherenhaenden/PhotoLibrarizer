@@ -41,6 +41,7 @@
   <ItemGroup>
     <Folder Include="Tools\" />
     <Folder Include="Tools\FileSystem\" />
+    <Folder Include="Tools\Data\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
