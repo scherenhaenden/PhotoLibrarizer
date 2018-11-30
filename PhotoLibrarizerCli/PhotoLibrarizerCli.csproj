@@ -7,7 +7,7 @@
     <OutputType>Exe</OutputType>
     <RootNamespace>PhotoLibrarizerCli</RootNamespace>
     <AssemblyName>PhotoLibrarizerCli</AssemblyName>
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <DebugSymbols>true</DebugSymbols>
@@ -30,6 +30,34 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="MySql.Data.Entity.EF6">
+      <HintPath>..\packages\MySql.Data.Entity.6.8.8\lib\net45\MySql.Data.Entity.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="Google.Protobuf">
+      <HintPath>..\packages\Google.Protobuf.3.5.1\lib\net45\Google.Protobuf.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.ComponentModel" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.Install" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
+    <Reference Include="MySql.Data">
+      <HintPath>..\packages\MySql.Data.6.8.8\lib\net45\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.Entity" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -37,10 +65,20 @@
     <Compile Include="Tools\FileSystem\IFilesSeeker.cs" />
     <Compile Include="Tools\FileSystem\FileSeeker.cs" />
     <Compile Include="Tools\FileSystem\ListOfDefaultExtensions.cs" />
+    <Compile Include="Tools\Data\Test.cs" />
+    <Compile Include="Tools\Data\DataContextForUpdatingTables.cs" />
+    <Compile Include="Tools\Data\Configuration.cs" />
+    <Compile Include="Tools\Models\Files.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tools\" />
     <Folder Include="Tools\FileSystem\" />
+    <Folder Include="Tools\Data\" />
+    <Folder Include="Tools\Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
