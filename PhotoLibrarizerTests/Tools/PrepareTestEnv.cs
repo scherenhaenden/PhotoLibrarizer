@@ -14,7 +14,7 @@ namespace PhotoLibrarizerTests.Tools
 
         }
 
-        private void Download(string url, string filename)
+        private void DownloadFile(string url, string filename)
         {
             WebClient myWebClient = new WebClient();
             myWebClient.DownloadFile(url, filename);
