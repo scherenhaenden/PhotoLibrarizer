@@ -8,7 +8,7 @@ namespace PhotoLibrerizerData.Models.Sqlite
     {
         [PrimaryKey, AutoIncrement]
         public int Id { get; set; }
-        public override string FullPath;
+       
 
     }
 }
