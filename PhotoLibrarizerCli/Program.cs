@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using PhotoLibrazierCore.Tools.FileSystem.Seeker;
+using PhotoLibrazierCore.Tools.Metadata;
 using PhotoLibrerizerData.Connection;
 using PhotoLibrerizerData.Models.Sqlite;
 
@@ -19,9 +20,14 @@ namespace PhotoLibrarizerCli
 
 
 
+
+
+
             IFilesSeeker iFilesSeeker = new FileSeeker();
 
             var files = iFilesSeeker.GetFilesInPath("/home/edward/Bilder/TempTest/");
+
+            new TestClassMetadataReader().FirstDraft(files[5]);
             var result=GenerateFilesTest(files);
 
             new TestClass().SecondTest(result);
