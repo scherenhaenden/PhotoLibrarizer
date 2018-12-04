@@ -1,10 +1,14 @@
 ﻿using System;
+using PhotoLibrerizerData.Models.Generic;
+using SQLite;
+
 namespace PhotoLibrerizerData.Models.Sqlite
 {
-    public class Files
+    public class Files : FilesModel
     {
-        public Files()
-        {
-        }
+        [PrimaryKey, AutoIncrement]
+        public int Id { get; set; }
+        public override string FullPath;
+
     }
 }
