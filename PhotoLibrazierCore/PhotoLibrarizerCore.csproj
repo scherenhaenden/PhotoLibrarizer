@@ -35,6 +35,9 @@
     <Reference Include="MetadataExtractor">
       <HintPath>..\packages\MetadataExtractor.2.0.0\lib\net45\MetadataExtractor.dll</HintPath>
     </Reference>
+    <Reference Include="photo.exif">
+      <HintPath>..\packages\photo.exif.1.1.16.0\lib\net40\photo.exif.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MyClass.cs" />
@@ -46,6 +49,7 @@
     <Compile Include="Tools\FileSystem\Seeker\IFilesSeeker.cs" />
     <Compile Include="Tools\FileSystem\Renamer\ChageNameOfFiles.cs" />
     <Compile Include="Tools\FileSystem\Renamer\IChageNameOfFiles.cs" />
+    <Compile Include="Tools\Metadata\TestClassMetadataReader.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tools\" />
