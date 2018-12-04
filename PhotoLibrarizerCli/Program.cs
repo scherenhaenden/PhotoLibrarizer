@@ -1,4 +1,5 @@
 ﻿using System;
+using PhotoLibrerizerData.Connection;
 
 namespace PhotoLibrarizerCli
 {
@@ -9,7 +10,12 @@ namespace PhotoLibrarizerCli
             Console.WriteLine("Hello World!");
 
             //Todo: CreateConfiguration
-            //Todo: CreateLibraryOfPictures         
+            //Todo: CreateLibraryOfPictures  
+
+            new TestClass().FirstTest();
+
+
+
         }
     }
 }
