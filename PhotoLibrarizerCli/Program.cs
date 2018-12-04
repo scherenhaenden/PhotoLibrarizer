@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using PhotoLibrazierCore.Tools.FileSystem;
+using PhotoLibrazierCore.Tools.FileSystem.Seeker;
 using PhotoLibrerizerData.Connection;
 using PhotoLibrerizerData.Models.Sqlite;
 
