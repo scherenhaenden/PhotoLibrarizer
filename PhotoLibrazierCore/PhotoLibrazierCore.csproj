@@ -35,10 +35,13 @@
     <Compile Include="Tools\FileSystem\FileSeeker.cs" />
     <Compile Include="Tools\FileSystem\IFilesSeeker.cs" />
     <Compile Include="Tools\FileSystem\ListOfDefaultExtensions.cs" />
+    <Compile Include="Tools\Hash\HashFileGenerator.cs" />
+    <Compile Include="Tools\Hash\IHashFileGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tools\" />
     <Folder Include="Tools\FileSystem\" />
+    <Folder Include="Tools\Hash\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
