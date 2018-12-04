@@ -8,7 +8,8 @@ namespace PhotoLibrerizerData.Models.Generic
         public string FullPath { get; set; }
         public string FilName { get; set; }
         public string Hash { get; set; }
-        public DateTime FileCreatedDate { get; set; }
+        public DateTime Inserted { get; set; }
+        public DateTime Updated { get; set; }
 
 
     }

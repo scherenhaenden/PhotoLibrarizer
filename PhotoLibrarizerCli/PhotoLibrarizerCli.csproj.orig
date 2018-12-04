@@ -37,6 +37,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+<<<<<<< HEAD
     <ProjectReference Include="..\PhotoLibrerizerData\PhotoLibrerizerData.csproj">
       <Project>{665C5284-8185-4224-A518-424B872880A2}</Project>
       <Name>PhotoLibrerizerData</Name>
@@ -45,9 +46,9 @@
       <Project>{BFBCF5F6-1708-4916-8CA9-FC85C86B2556}</Project>
       <Name>PhotoLibrarizerCore</Name>
     </ProjectReference>
-  </ItemGroup>
-<ItemGroup>
+=======
     <Folder Include="Tools\" />
+>>>>>>> NextReleases
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
