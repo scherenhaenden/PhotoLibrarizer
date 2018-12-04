@@ -2,7 +2,7 @@
 using System.IO;
 using System.Linq;
 
-namespace PhotoLibrazierCore.Tools.FileSystem
+namespace PhotoLibrazierCore.Tools.FileSystem.Seeker
 {
     public class FileSeeker: IFilesSeeker
     {
