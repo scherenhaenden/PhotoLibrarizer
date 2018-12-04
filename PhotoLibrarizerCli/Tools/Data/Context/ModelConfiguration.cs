@@ -6,17 +6,17 @@ namespace PhotoLibrarizerCli.Tools.Data.Context
 {
     public class ModelConfiguration
     {
-        /*public static void Configure(DbModelBuilder modelBuilder)
+        public static void Configure(DbModelBuilder modelBuilder)
         {
             ConfigureTeamEntity(modelBuilder);
-          /*  ConfigureStadionEntity(modelBuilder);
+            /*ConfigureStadionEntity(modelBuilder);
             ConfigureCoachEntity(modelBuilder);
             ConfigurePlayerEntity(modelBuilder);
             ConfigureSelfReferencingEntities(modelBuilder);
-            ConfigureCompositeKeyEntities(modelBuilder);* /
-        }*/
+            ConfigureCompositeKeyEntities(modelBuilder);*/
+        }
 
-       /* private static void ConfigureTeamEntity(DbModelBuilder modelBuilder)
+        private static void ConfigureTeamEntity(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<FileModel>().ToTable("Base.MyTable")
                         .HasRequired(t => t.Name)
@@ -27,9 +27,9 @@ namespace PhotoLibrarizerCli.Tools.Data.Context
                 .HasRequired(t => t.Stadion)
                 .WithRequiredPrincipal()
                 .WillCascadeOnDelete(true);*/
-        //}
+        }
 
-      /*  private static void ConfigureStadionEntity(DbModelBuilder modelBuilder)
+       /* private static void ConfigureStadionEntity(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Stadion>();
         }

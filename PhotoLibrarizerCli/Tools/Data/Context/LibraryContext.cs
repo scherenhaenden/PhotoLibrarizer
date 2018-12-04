@@ -5,7 +5,7 @@ namespace PhotoLibrarizerCli.Tools.Data.Context
 {
     public class LibraryContext : DbContext
     {
-       /* public LibraryContext(string nameOrConnectionString)
+        public LibraryContext(string nameOrConnectionString)
             : base(nameOrConnectionString)
         {
             Configure();
@@ -22,13 +22,14 @@ namespace PhotoLibrarizerCli.Tools.Data.Context
             Configuration.ProxyCreationEnabled = true;
             Configuration.LazyLoadingEnabled = true;
         }
+        DbSet<Models.FileModel> FileModels  { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
            ModelConfiguration.Configure(modelBuilder);
-            var initializer = new LibraryDbInitializer(modelBuilder);
-            Database.SetInitializer(initializer);
-        }*/
+            //var initializer = new LibraryDbInitializer(modelBuilder);
+            //Database.SetInitializer(initializer);
+        }
 
     }
 }

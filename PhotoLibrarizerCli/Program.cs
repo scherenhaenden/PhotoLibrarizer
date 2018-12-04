@@ -2,8 +2,10 @@
 using System.Configuration;
 using System.Data.Entity;
 using System.Linq;
+using Mono.Data.Sqlite;
 using PhotoLibrarizerCli.Tools.Data.Context;
 using PhotoLibrarizerCli.Tools.Data.Models;
+using PhotoLibrarizerCli.Tools.Data.Sqlite;
 using PhotoLibrarizerCli.Tools.Temp;
 
 namespace PhotoLibrarizerCli
@@ -19,8 +21,28 @@ namespace PhotoLibrarizerCli
 
 
             //new CreateDB().Run();
+
+
+
+           var connection= new CreateSqliteConnection().ByFileName();
+
+           
+
+            connection.Open();
+
+
+
+
             try
             {
+               /* using (var db = new LibraryContext())
+                {
+                    var fileModel = new FileModel() { Name = "John" };
+                    db.
+                    db.SaveChanges();
+                }*/
+
+
                 MongoDBContext context = new MongoDBContext();
                 context.Configuration.UseDatabaseNullSemantics = true;
                 var query = from line in context.restaurants select line;

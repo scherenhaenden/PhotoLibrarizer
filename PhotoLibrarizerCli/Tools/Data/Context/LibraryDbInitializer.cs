@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Data.Entity;
 using PhotoLibrarizerCli.Tools.Data.Models;
-/*using SQLite.CodeFirst;
+//using SQLite.CodeFirst;
 
-namespace PhotoLibrarizerCli.Tools.Data.Context
+/*namespace PhotoLibrarizerCli.Tools.Data.Context
 {
-    public class LibraryDbInitializer : SqliteDropCreateDatabaseWhenModelChanges<LibraryContext>
+   /* public class LibraryDbInitializer : SqliteDropCreateDatabaseWhenModelChanges<LibraryContext>
     {
         public LibraryDbInitializer(DbModelBuilder modelBuilder)
             : base(modelBuilder, typeof(CustomHistory))
