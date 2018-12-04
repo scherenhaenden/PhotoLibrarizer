@@ -1,5 +1,5 @@
 ﻿using System;
-namespace PhotoLibrazierCore
+namespace PhotoLibrarizerCore
 {
     public class MyClass
     {
