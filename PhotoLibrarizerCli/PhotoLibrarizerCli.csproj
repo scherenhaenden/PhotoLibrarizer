@@ -69,6 +69,7 @@
     <Compile Include="Tools\Data\DataContextForUpdatingTables.cs" />
     <Compile Include="Tools\Data\Configuration.cs" />
     <Compile Include="Tools\Models\Files.cs" />
+    <Compile Include="Tools\Models\Configuration.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tools\" />
