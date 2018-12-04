@@ -3,7 +3,7 @@ using System.IO;
 
 namespace PhotoLibrerizerData.Models.Generic
 {
-    public class Files
+    public class FilesModel
     {       
         public string FullPath;
         public string FilName;
