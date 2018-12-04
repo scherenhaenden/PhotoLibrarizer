@@ -3,12 +3,12 @@ using System.IO;
 
 namespace PhotoLibrerizerData.Models.Generic
 {
-    public class FilesModel
+    public abstract class FilesModel
     {       
-        public string FullPath;
-        public string FilName;
-        public string Hash;
-        public DateTime FileCreatedDate;
+        public string FullPath { get; set; }
+        public string FilName { get; set; }
+        public string Hash { get; set; }
+        public DateTime FileCreatedDate { get; set; }
 
 
     }
