@@ -1,5 +1,6 @@
 ﻿using System;
 using PhotoLibrazierCore.Tools.CliConfiguration;
+using PhotoLibrazierCore.Tools.Serialization;
 
 namespace PhotoLibrarizerCli
 {
@@ -18,7 +19,7 @@ namespace PhotoLibrarizerCli
 
            
 
-            new LoaderDraft().FirstDraft(); 
+            var config=new ConfigurationLoader(new JsonSerialization()).RunAndGetModel(); 
 
             /*
             IFilesSeeker iFilesSeeker = new FileSeeker();
