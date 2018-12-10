@@ -3,11 +3,19 @@ using System.Xml;
 
 namespace PhotoLibrazierCore.Tools.Serialization
 {
-    public class ToXml: ISerialization
+    public class XmlSerialization: ISerialization
     {
+        public object ToObjectByString(string json)
+        {
+            throw new NotImplementedException();
+        }
 
+        public T ToObjectByString<T>(string json)
+        {
+            throw new NotImplementedException();
+        }
 
-        string ISerialization.ByObject(object obj)
+        string ISerialization.ToJsonByObject(object obj)
         {
             throw new NotImplementedException();
         }
