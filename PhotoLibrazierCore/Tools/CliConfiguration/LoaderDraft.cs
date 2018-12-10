@@ -1,29 +1,40 @@
-﻿using System;
-using System.Configuration;
+﻿
 
+
+using System.Configuration;
+using System.Reflection;
 
 namespace PhotoLibrazierCore.Tools.CliConfiguration
 {
-    public class Loader
+    public class LoaderDraft
     {
-        public Loader()
+        public LoaderDraft()
         {
+        }
+
+        private void UpdateSetting(string key, string value)
+        {
+
+
+            var hjhj = Assembly.GetExecutingAssembly().Location;
+            Configuration configuration = ConfigurationManager.
+                OpenExeConfiguration(hjhj);
+
+            var h = configuration.AppSettings;
+
+            configuration.AppSettings.Settings[key].Value = value;
+            configuration.Save();
+
+            ConfigurationManager.RefreshSection("appSettings");
         }
 
         public void FirstDraft() 
         {
-            strhostnameLoad = ConfigurationManager.AppSettings["hostname"].ToString();
+            UpdateSetting("uno", "dos");
+           
 
 
-            ;
-
-            /* = System.ConfigurationManager
-            .OpenExeConfiguration(Application.ExecutablePath);
-
-            config.AppSettings.Settings.Remove("MySetting");
-            config.AppSettings.Settings.Add("MySetting", "some value");
-
-            config.Save(ConfigurationSaveMode.Modified);-*/
+           
 
         }
     }
