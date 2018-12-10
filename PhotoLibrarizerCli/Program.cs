@@ -1,15 +1,15 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using PhotoLibrazierCore.Tools.FileSystem.Seeker;
-using PhotoLibrazierCore.Tools.Metadata;
-using PhotoLibrerizerData.Connection;
-using PhotoLibrerizerData.Models.Sqlite;
+using PhotoLibrazierCore.Tools.CliConfiguration;
+using PhotoLibrazierCore.Tools.Serialization;
 
 namespace PhotoLibrarizerCli
 {
     class MainClass
     {
+
+       
+
+
         public static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
@@ -18,19 +18,15 @@ namespace PhotoLibrarizerCli
             //Todo: CreateLibraryOfPictures  
 
 
+            var config=new ConfigurationLoader(new JsonSerialization()).RunAndGetModel(); 
 
-
-
-
-
+            /*
             IFilesSeeker iFilesSeeker = new FileSeeker();
 
             var files = iFilesSeeker.GetFilesInPath("/home/edward/Bilder/TempTest/");
-
-            new TestClassMetadataReader().FirstDraft(files[5]);
             var result=GenerateFilesTest(files);
 
-            new TestClass().SecondTest(result);
+            new TestClass().SecondTest(result);*/
 
 
 
@@ -44,23 +40,8 @@ namespace PhotoLibrarizerCli
             {
                 var file = new Files();
 
-
-                file.FilName = Path.GetFileName(fil);
-                //_Path = Path.GetDirectoryName(fil);
-                FileInfo FInfo = new FileInfo(fil);
-
-                file.Inserted = dt;
-                file.Updated = dt;
-
-
-                
-                files.Add(file);
-            }
-
-            return files;
-
-
-
         }
+
+       
     }
 }
