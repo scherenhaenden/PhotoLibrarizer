@@ -3,12 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLibrarizerCli", "PhotoLibrarizerCli\PhotoLibrarizerCli.csproj", "{1E31E239-C8F4-4C40-91E5-6527CF698418}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLibrazierCore", "PhotoLibrazierCore\PhotoLibrazierCore.csproj", "{BFBCF5F6-1708-4916-8CA9-FC85C86B2556}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLibrarizerCore", "PhotoLibrazierCore\PhotoLibrarizerCore.csproj", "{BFBCF5F6-1708-4916-8CA9-FC85C86B2556}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D82E4775-398E-440D-898F-4EA28C6C141D}"
 	ProjectSection(SolutionItems) = preProject
 		README.md = README.md
+		Changelog.md = Changelog.md
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLibrerizerData", "PhotoLibrerizerData\PhotoLibrerizerData.csproj", "{665C5284-8185-4224-A518-424B872880A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,5 +27,9 @@ Global
 		{BFBCF5F6-1708-4916-8CA9-FC85C86B2556}.Debug|x86.Build.0 = Debug|Any CPU
 		{BFBCF5F6-1708-4916-8CA9-FC85C86B2556}.Release|x86.ActiveCfg = Release|Any CPU
 		{BFBCF5F6-1708-4916-8CA9-FC85C86B2556}.Release|x86.Build.0 = Release|Any CPU
+		{665C5284-8185-4224-A518-424B872880A2}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{665C5284-8185-4224-A518-424B872880A2}.Debug|x86.Build.0 = Debug|Any CPU
+		{665C5284-8185-4224-A518-424B872880A2}.Release|x86.ActiveCfg = Release|Any CPU
+		{665C5284-8185-4224-A518-424B872880A2}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
