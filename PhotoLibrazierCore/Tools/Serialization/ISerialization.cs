@@ -1,8 +1,12 @@
 ﻿using System;
 namespace PhotoLibrazierCore.Tools.Serialization
 {
-    public interface ISerialize
+    public interface ISerialization
     {
-        string ByObject(object obj);
+        string ToJsonByObject(object obj);
+
+        object ToObjectByString(string json);
+
+        T ToObjectByString<T>(string json);
     }
 }

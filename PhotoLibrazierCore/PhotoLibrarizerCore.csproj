@@ -46,11 +46,11 @@
     <Compile Include="Tools\FileSystem\Seeker\IFilesSeeker.cs" />
     <Compile Include="Tools\FileSystem\Renamer\ChageNameOfFiles.cs" />
     <Compile Include="Tools\FileSystem\Renamer\IChageNameOfFiles.cs" />
-    <Compile Include="Tools\CliConfiguration\LoaderDraft.cs" />
+    <Compile Include="Tools\CliConfiguration\ConfigurationLoader.cs" />
     <Compile Include="Tools\CliConfiguration\CliConfigurationModel.cs" />
-    <Compile Include="Tools\Serialization\ToXml.cs" />
-    <Compile Include="Tools\Serialization\ToJson.cs" />
-    <Compile Include="Tools\Serialization\ISerialize.cs" />
+    <Compile Include="Tools\Serialization\XmlSerialization.cs" />
+    <Compile Include="Tools\Serialization\JsonSerialization.cs" />
+    <Compile Include="Tools\Serialization\ISerialization.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tools\" />
