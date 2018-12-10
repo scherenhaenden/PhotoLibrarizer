@@ -1,5 +1,5 @@
 ﻿using System;
-namespace PhotoLibrazierCore.Tools.Configuration
+namespace PhotoLibrazierCore.Tools.CliConfiguration
 {
     public class Loader
     {

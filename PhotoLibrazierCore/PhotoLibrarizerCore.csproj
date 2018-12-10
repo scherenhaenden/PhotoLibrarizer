@@ -40,8 +40,8 @@
     <Compile Include="Tools\FileSystem\Seeker\IFilesSeeker.cs" />
     <Compile Include="Tools\FileSystem\Renamer\ChageNameOfFiles.cs" />
     <Compile Include="Tools\FileSystem\Renamer\IChageNameOfFiles.cs" />
-    <Compile Include="Tools\Configuration\Loader.cs" />
-    <Compile Include="Tools\Configuration\ConfigurationModel.cs" />
+    <Compile Include="Tools\CliConfiguration\Loader.cs" />
+    <Compile Include="Tools\CliConfiguration\ConfigurationModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tools\" />
@@ -49,7 +49,7 @@
     <Folder Include="Tools\Hash\" />
     <Folder Include="Tools\FileSystem\Seeker\" />
     <Folder Include="Tools\FileSystem\Renamer\" />
-    <Folder Include="Tools\Configuration\" />
+    <Folder Include="Tools\CliConfiguration\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
