@@ -29,6 +29,12 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Serialization" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MyClass.cs" />
@@ -40,8 +46,11 @@
     <Compile Include="Tools\FileSystem\Seeker\IFilesSeeker.cs" />
     <Compile Include="Tools\FileSystem\Renamer\ChageNameOfFiles.cs" />
     <Compile Include="Tools\FileSystem\Renamer\IChageNameOfFiles.cs" />
-    <Compile Include="Tools\CliConfiguration\Loader.cs" />
-    <Compile Include="Tools\CliConfiguration\ConfigurationModel.cs" />
+    <Compile Include="Tools\CliConfiguration\LoaderDraft.cs" />
+    <Compile Include="Tools\CliConfiguration\CliConfigurationModel.cs" />
+    <Compile Include="Tools\Serialization\ToXml.cs" />
+    <Compile Include="Tools\Serialization\ToJson.cs" />
+    <Compile Include="Tools\Serialization\ISerialize.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tools\" />
@@ -50,6 +59,10 @@
     <Folder Include="Tools\FileSystem\Seeker\" />
     <Folder Include="Tools\FileSystem\Renamer\" />
     <Folder Include="Tools\CliConfiguration\" />
+    <Folder Include="Tools\Serialization\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
