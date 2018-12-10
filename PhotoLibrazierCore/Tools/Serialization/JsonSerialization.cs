@@ -1,6 +1,6 @@
 ﻿namespace PhotoLibrazierCore.Tools.Serialization
 {
-    public class ToJson: ISerialize
+    public class Json: ISerialization
     {
         public string ByObject(object obj)
         {
