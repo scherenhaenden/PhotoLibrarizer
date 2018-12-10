@@ -41,6 +41,7 @@
     <Compile Include="Tools\FileSystem\Renamer\ChageNameOfFiles.cs" />
     <Compile Include="Tools\FileSystem\Renamer\IChageNameOfFiles.cs" />
     <Compile Include="Tools\Configuration\Loader.cs" />
+    <Compile Include="Tools\Configuration\ConfigurationModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tools\" />

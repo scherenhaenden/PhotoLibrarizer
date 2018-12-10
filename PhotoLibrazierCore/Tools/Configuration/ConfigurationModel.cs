@@ -3,8 +3,6 @@ namespace PhotoLibrazierCore.Tools.Configuration
 {
     public class ConfigurationModel
     {
-        public ConfigurationModel()
-        {
-        }
+        public string LibraryPath { get; set; }
     }
 }
