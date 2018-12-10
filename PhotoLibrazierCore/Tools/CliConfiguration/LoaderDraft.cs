@@ -12,7 +12,37 @@ namespace PhotoLibrazierCore.Tools.CliConfiguration
         {
         }
 
-        private void UpdateSetting(string key, string value)
+        private static void UpdateSetting(string key, string value)
+        {
+
+
+            var hjhj = Assembly.GetExecutingAssembly().Location;
+            Configuration configuration = ConfigurationManager.
+                OpenExeConfiguration(hjhj);
+
+            var h = configuration.AppSettings;
+            var entry = configuration.AppSettings.Settings[key];
+
+            if (entry == null)
+            {
+                configuration.AppSettings.Settings.Add(key, value);
+            }
+            else
+            {
+                configuration.AppSettings.Settings[key].Value = value;
+
+            }
+
+
+            configuration.Save(ConfigurationSaveMode.Modified);
+            configuration.Save();
+
+
+            ConfigurationManager.RefreshSection("appSettings");
+        }
+
+
+        private void UpdateSetting2(string key, string value)
         {
 
 
@@ -30,11 +60,14 @@ namespace PhotoLibrazierCore.Tools.CliConfiguration
 
         public void FirstDraft() 
         {
-            UpdateSetting("uno", "dos");
-           
+            var cliConfig= new CliConfigurationModel();
+
+            cliConfig.LibraryPath = "";
 
 
-           
+
+
+
 
         }
     }
