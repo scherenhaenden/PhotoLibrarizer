@@ -47,6 +47,7 @@
     <Folder Include="Tools\Hash\" />
     <Folder Include="Tools\FileSystem\Seeker\" />
     <Folder Include="Tools\FileSystem\Renamer\" />
+    <Folder Include="Tools\Configuration\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>
