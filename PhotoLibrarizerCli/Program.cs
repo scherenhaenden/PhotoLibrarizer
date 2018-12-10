@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Configuration;
-using System.Collections.Generic;
-using System.IO;
-using PhotoLibrazierCore.Tools.FileSystem.Seeker;
-using PhotoLibrerizerData.Connection;
-using PhotoLibrerizerData.Models.Sqlite;
 using PhotoLibrazierCore.Tools.CliConfiguration;
-using System.Reflection;
 
 namespace PhotoLibrarizerCli
 {
