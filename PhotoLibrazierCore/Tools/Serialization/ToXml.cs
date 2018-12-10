@@ -1,10 +1,14 @@
 ﻿using System;
+using System.Xml;
+
 namespace PhotoLibrazierCore.Tools.Serialization
 {
-    public class ToXml
+    public class ToXml: ISerialize
     {
-        public ToXml()
+        public void ByObject(object obj) 
         {
+
+
         }
     }
 }
