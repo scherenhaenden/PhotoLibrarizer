@@ -43,9 +43,10 @@ namespace PhotoLibrarizerCli
             foreach (var fil in Files)
             {
                 var file = new Files();
-
+                file.FullPath = fil;
+                files.Add(file);
             }
-            return null;
+            return files;
 
 
         }
