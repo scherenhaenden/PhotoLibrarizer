@@ -1,13 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using PhotoLibrazierCore.Tools.CliConfiguration;
 using PhotoLibrazierCore.Tools.Serialization;
+using PhotoLibrerizerData.Models.Sqlite;
 
 namespace PhotoLibrarizerCli
 {
     class MainClass
     {
 
-       
+
 
 
         public static void Main(string[] args)
@@ -18,7 +20,7 @@ namespace PhotoLibrarizerCli
             //Todo: CreateLibraryOfPictures  
 
 
-            var config=new ConfigurationLoader(new JsonSerialization()).RunAndGetModel(); 
+            var config = new ConfigurationLoader(new JsonSerialization()).RunAndGetModel();
 
             /*
             IFilesSeeker iFilesSeeker = new FileSeeker();
@@ -36,12 +38,14 @@ namespace PhotoLibrarizerCli
         {
             List<Files> files = new List<Files>();
             DateTime dt = DateTime.Now;
-            foreach(var fil in Files) 
+            foreach (var fil in Files)
             {
                 var file = new Files();
 
-        }
+            }
+            return null;
 
-       
+
+        }
     }
 }
