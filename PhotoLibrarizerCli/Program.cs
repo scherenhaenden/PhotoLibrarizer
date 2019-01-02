@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using PhotoLibrazierCore.Tools.CliConfiguration;
+using PhotoLibrazierCore.Tools.FileSystem.Seeker;
 using PhotoLibrazierCore.Tools.Serialization;
+using PhotoLibrerizerData.Connection;
 using PhotoLibrerizerData.Models.Sqlite;
 
 namespace PhotoLibrarizerCli
@@ -22,13 +24,13 @@ namespace PhotoLibrarizerCli
 
             var config = new ConfigurationLoader(new JsonSerialization()).RunAndGetModel();
 
-            /*
+
             IFilesSeeker iFilesSeeker = new FileSeeker();
 
             var files = iFilesSeeker.GetFilesInPath("/home/edward/Bilder/TempTest/");
             var result=GenerateFilesTest(files);
 
-            new TestClass().SecondTest(result);*/
+            //new TestClass().SecondTest(result);
 
 
 
