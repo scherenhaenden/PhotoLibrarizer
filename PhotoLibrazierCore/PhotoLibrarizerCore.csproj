@@ -62,6 +62,8 @@
     <Compile Include="Tools\Serialization\JsonSerialization.cs" />
     <Compile Include="Tools\Serialization\ISerialization.cs" />
     <Compile Include="Tools\Metadata\TestClassMetadataReader.cs" />
+    <Compile Include="Tools\Metadata\MetaFactory\IExifData.cs" />
+    <Compile Include="Tools\Metadata\MetaFactory\ExifDataByPhotoExif.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tools\" />
@@ -73,6 +75,7 @@
     <Folder Include="Tools\Metadata\" />
     <Folder Include="Tools\CliConfiguration\" />
     <Folder Include="Tools\Serialization\" />
+    <Folder Include="Tools\Metadata\MetaFactory\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
