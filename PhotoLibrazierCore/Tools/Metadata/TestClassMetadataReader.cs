@@ -36,8 +36,8 @@ namespace PhotoLibrazierCore.Tools.Metadata
         public DateTime? photo_exif(string PathToPicture)
         {
             doob.Parser Prs = new doob.Parser();
-            IEnumerable<photo.exif.ExifItem> MetaItemsPhotos = Prs.Parse(PathToPicture);
-            List<photo.exif.ExifItem> ListedMetaItemsPhotos = MetaItemsPhotos.ToList();
+            IEnumerable<doob.ExifItem> MetaItemsPhotos = Prs.Parse(PathToPicture);
+            List<doob.ExifItem> ListedMetaItemsPhotos = MetaItemsPhotos.ToList();
             foreach (var item in ListedMetaItemsPhotos)
             {
                 if (item.Id == 306 || item.Id == 36867)
