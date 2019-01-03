@@ -11,6 +11,7 @@ namespace PhotoLibrazierCore.Tools.Metadata.MetaFactory
         {
             this.pathToMediaFile = pathToMediaFile;
         }
+
         doob.Parser parserOfExifData = new doob.Parser();
         string pathToMediaFile;
 

@@ -31,21 +31,16 @@ namespace PhotoLibrarizerCli
             var files = iFilesSeeker.GetFilesInPath("/home/edward/Bilder/TempTest/", new List<string>() { ".jpg" });
             TestDateFiles(files);
             var result=GenerateFilesTest(files);
-
             //new TestClass().SecondTest(result);
-
-
-
         }
+
         public static void TestDateFiles(List<string> Files) 
         {
             foreach(var file in Files) 
             {
-                IExifData iExifData = new ExifDataByPhotoExif(file);
+                IExifData iExifData = new ExifDataByMetaExtractor(file);
                 var h=iExifData.GetData();
-
             }
-
         }
 
         public static List<Files> GenerateFilesTest(List<string> Files)
