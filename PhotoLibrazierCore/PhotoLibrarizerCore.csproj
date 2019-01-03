@@ -64,6 +64,7 @@
     <Compile Include="Tools\Metadata\TestClassMetadataReader.cs" />
     <Compile Include="Tools\Metadata\MetaFactory\IExifData.cs" />
     <Compile Include="Tools\Metadata\MetaFactory\ExifDataByPhotoExif.cs" />
+    <Compile Include="Tools\Metadata\MetaFactory\MetaDataModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tools\" />
