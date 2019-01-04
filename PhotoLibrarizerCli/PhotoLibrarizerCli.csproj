@@ -32,6 +32,8 @@
     <Reference Include="System" />
     <Reference Include="mscorlib" />
     <Reference Include="System.Configuration" />
+    <Reference Include="Mono.CSharp" />
+    <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
