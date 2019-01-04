@@ -61,10 +61,11 @@
     <Compile Include="Tools\Serialization\JsonSerialization.cs" />
     <Compile Include="Tools\Serialization\ISerialization.cs" />
     <Compile Include="Tools\Metadata\TestClassMetadataReader.cs" />
-    <Compile Include="Tools\Metadata\MetaFactory\IExifData.cs" />
+    <Compile Include="Tools\Metadata\MetaFactory\IAllMetadataData.cs" />
     <Compile Include="Tools\Metadata\MetaFactory\ExifDataByPhotoExif.cs" />
     <Compile Include="Tools\Metadata\MetaFactory\MetaDataModel.cs" />
-    <Compile Include="Tools\Metadata\MetaFactory\ExifDataByMetaExtractor.cs" />
+    <Compile Include="Tools\Metadata\MetaFactory\DataByMetaExtractor.cs" />
+    <Compile Include="Tools\Metadata\MetaFactory\JavaScriptSerializer.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tools\" />

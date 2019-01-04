@@ -38,7 +38,7 @@ namespace PhotoLibrarizerCli
         {
             foreach(var file in Files) 
             {
-                IExifData iExifData = new ExifDataByMetaExtractor(file);
+                IAllMetadataData iExifData = new DataByMetaExtractor(file);
                 var h=iExifData.GetData();
             }
         }

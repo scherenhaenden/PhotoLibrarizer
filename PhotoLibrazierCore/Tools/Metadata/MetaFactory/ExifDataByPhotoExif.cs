@@ -5,7 +5,7 @@ using System.Linq;
 using doob = photo.exif;
 namespace PhotoLibrazierCore.Tools.Metadata.MetaFactory
 {
-    public class ExifDataByPhotoExif:IExifData
+    public class ExifDataByPhotoExif:IAllMetadataData
     {
         public ExifDataByPhotoExif(string pathToMediaFile)
         {
