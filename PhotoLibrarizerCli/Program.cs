@@ -23,11 +23,11 @@ namespace PhotoLibrarizerCli
             var config = new ConfigurationLoader(new JsonSerialization()).RunAndGetModel();
 
 
-            IFilesSeeker iFilesSeeker = new FileSeeker();
+            /*IFilesSeeker iFilesSeeker = new FileSeeker();
 
             var files = iFilesSeeker.GetFilesInPath("/home/edward/Bilder/TempTest/", new List<string>() { ".jpg" });
             TestDateFiles(files);
-            var result=GenerateFilesTest(files);
+            var result=GenerateFilesTest(files);*/
             //new TestClass().SecondTest(result);
 //Todo: CreateLibraryOfPictures        
 

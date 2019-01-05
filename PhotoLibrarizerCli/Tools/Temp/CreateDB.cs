@@ -88,7 +88,7 @@ namespace PhotoLibrarizerCli.Tools.Temp
             modelBuilder.Conventions.Remove<PluralizingTableNameConvention>();
         }
         public DbSet<restaurants> restaurants { set; get; }
-        public object Configuration { get; internal set; }
+
     }
     public class restaurants
     {
