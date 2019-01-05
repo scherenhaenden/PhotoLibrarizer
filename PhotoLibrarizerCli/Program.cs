@@ -28,7 +28,7 @@ namespace PhotoLibrarizerCli
 
            
 
-            connection.Open();
+            //connection.Open();
 
 
 

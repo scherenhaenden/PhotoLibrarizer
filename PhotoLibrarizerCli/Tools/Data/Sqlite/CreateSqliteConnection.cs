@@ -11,7 +11,7 @@ namespace PhotoLibrarizerCli.Tools.Data.Sqlite
         {
         }
 
-        public SqliteConnection ByFileName(string dataSource= "@Data Source={0}\\SimpleDatabase.s3db") 
+        public SQLiteConnection ByFileName(string dataSource= "@Data Source={0}\\SimpleDatabase.s3db") 
         {
 
 
@@ -32,7 +32,9 @@ namespace PhotoLibrarizerCli.Tools.Data.Sqlite
                dataSource,
                Environment.CurrentDirectory));
 
-            return connection;
+            connection = new SqliteConnection(dataSource);
+
+            return db;
 
 
         }
