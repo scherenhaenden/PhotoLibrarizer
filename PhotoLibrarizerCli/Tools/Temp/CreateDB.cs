@@ -18,14 +18,10 @@ namespace PhotoLibrarizerCli.Tools.Temp
 
         public void Run()
         {
-
-
-
             if (!File.Exists("MyDatabase.sqlite"))
             {
                 SqliteConnection.CreateFile("MyDatabase.sqlite");
             }
-
             All();
         }
 
@@ -45,11 +41,8 @@ namespace PhotoLibrarizerCli.Tools.Temp
 
         public void All()
         {
-
             var m_dbConnection = new Mono.Data.Sqlite.SqliteConnection("Data Source=MyDatabase.sqlite;Version=3;");
             m_dbConnection.Open();
-
-
 
             using (var db = new MyDBContext(m_dbConnection, true))
             {
@@ -72,8 +65,6 @@ namespace PhotoLibrarizerCli.Tools.Temp
             public MyDBContext(DbConnection connection, bool contextOwnsConnection)
             : base(connection, contextOwnsConnection)
             {
-
-
 
             }
             public DbSet<Note> Notes { get; set; }
