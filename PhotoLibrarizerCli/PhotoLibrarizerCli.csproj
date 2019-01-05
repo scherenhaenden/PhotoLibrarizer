@@ -108,6 +108,8 @@
     <Reference Include="SQLite-net">
       <HintPath>..\packages\sqlite-net-pcl.1.5.231\lib\netstandard1.1\SQLite-net.dll</HintPath>
     </Reference>
+    <Reference Include="System" />
+    <Reference Include="mscorlib" />
   </ItemGroup>
 <ItemGroup>
     <ProjectReference Include="..\PhotoLibrerizerData\PhotoLibrerizerData.csproj">

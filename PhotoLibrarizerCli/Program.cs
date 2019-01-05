@@ -1,4 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Configuration;
+using PhotoLibrarizerCli.Tools.Temp;
+using PhotoLibrazierCore.Tools.CliConfiguration;
+using PhotoLibrazierCore.Tools.FileSystem.Seeker;
+using PhotoLibrazierCore.Tools.Metadata.MetaFactory;
+using PhotoLibrazierCore.Tools.Serialization;
 
 namespace PhotoLibrarizerCli
 {
