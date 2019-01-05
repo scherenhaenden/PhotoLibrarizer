@@ -8,6 +8,8 @@ using PhotoLibrazierCore.Tools.Metadata.MetaFactory;
 using PhotoLibrazierCore.Tools.Serialization;
 using System.Linq;
 using PhotoLibrarizerCli.Tools.Data.Sqlite;
+using PhotoLibrerizerData.Models.Sqlite;
+
 namespace PhotoLibrarizerCli
 {
     class MainClass
