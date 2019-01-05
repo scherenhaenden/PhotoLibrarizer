@@ -133,6 +133,7 @@
     <Compile Include="Tools\Data\Models\CustomHistory.cs" />
     <Compile Include="Tools\Temp\CreateDB.cs" />
     <Compile Include="Tools\Data\Sqlite\CreateSqliteConnection.cs" />
+    <Compile Include="Tools\SeekFilesAndGetData.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Tools\" />
