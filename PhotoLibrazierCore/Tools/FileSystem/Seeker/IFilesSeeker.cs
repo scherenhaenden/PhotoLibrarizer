@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace PhotoLibrarizerCli.Tools.FileSystem
+namespace PhotoLibrazierCore.Tools.FileSystem.Seeker
 {
     public interface IFilesSeeker
     {

@@ -1,37 +1,32 @@
+<<<<<<< HEAD
+﻿using System;
+using System.Configuration;
+using System.Data.Entity;
+using System.Linq;
+using Mono.Data.Sqlite;
+using PhotoLibrarizerCli.Tools.Data.Context;
+using PhotoLibrarizerCli.Tools.Data.Models;
+using PhotoLibrarizerCli.Tools.Data.Sqlite;
+using PhotoLibrarizerCli.Tools.Temp;
+=======
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration;
-using PhotoLibrarizerCli.Tools.Temp;
 using PhotoLibrazierCore.Tools.CliConfiguration;
 using PhotoLibrazierCore.Tools.FileSystem.Seeker;
 using PhotoLibrazierCore.Tools.Metadata.MetaFactory;
 using PhotoLibrazierCore.Tools.Serialization;
-using System.Linq;
-using PhotoLibrarizerCli.Tools.Data.Sqlite;
+using PhotoLibrerizerData.Connection;
 using PhotoLibrerizerData.Models.Sqlite;
+>>>>>>> NextReleases
 
 namespace PhotoLibrarizerCli
 {
     class MainClass
     {
-        public static void Main(string[] args)
-        {
-            Console.WriteLine("Hello World!");
 
+<<<<<<< HEAD
             //Todo: CreateConfiguration
-            //Todo: CreateLibraryOfPictures  
-
-
-            var config = new ConfigurationLoader(new JsonSerialization()).RunAndGetModel();
-
-
-            /*IFilesSeeker iFilesSeeker = new FileSeeker();
-
-            var files = iFilesSeeker.GetFilesInPath("/home/edward/Bilder/TempTest/", new List<string>() { ".jpg" });
-            TestDateFiles(files);
-            var result=GenerateFilesTest(files);*/
-            //new TestClass().SecondTest(result);
-//Todo: CreateLibraryOfPictures        
+            //Todo: CreateLibraryOfPictures        
 
 
             //new CreateDB().Run();
@@ -42,7 +37,7 @@ namespace PhotoLibrarizerCli
 
            
 
-            //connection.Open();
+            connection.Open();
 
 
 
@@ -81,9 +76,27 @@ namespace PhotoLibrarizerCli
                 CreateAndSeedDatabase(context);
                 //DisplaySeededData(context);
             }*/
-        
+=======
 
 
+
+        public static void Main(string[] args)
+        {
+            Console.WriteLine("Hello World!");
+
+            //Todo: CreateConfiguration
+            //Todo: CreateLibraryOfPictures  
+
+
+            var config = new ConfigurationLoader(new JsonSerialization()).RunAndGetModel();
+
+
+            IFilesSeeker iFilesSeeker = new FileSeeker();
+
+            var files = iFilesSeeker.GetFilesInPath("/home/edward/Bilder/TempTest/", new List<string>() { ".jpg" });
+            TestDateFiles(files);
+            var result=GenerateFilesTest(files);
+            //new TestClass().SecondTest(result);
         }
 
         public static void TestDateFiles(List<string> Files) 
@@ -108,9 +121,8 @@ namespace PhotoLibrarizerCli
             return files;
 
 
+>>>>>>> NextReleases
         }
-
-  
 
       /*  static void CreateAndSeedDatabase(DbContext context)
         {

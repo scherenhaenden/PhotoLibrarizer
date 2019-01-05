@@ -29,11 +29,8 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
-	<Reference Include="mscorlib" />
-<Reference Include="Mono.CSharp" />
-    <Reference Include="Microsoft.CSharp" />
-
     <Reference Include="System" />
+<<<<<<< HEAD
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -108,10 +105,33 @@
     <Reference Include="SQLite-net">
       <HintPath>..\packages\sqlite-net-pcl.1.5.231\lib\netstandard1.1\SQLite-net.dll</HintPath>
     </Reference>
-    <Reference Include="System" />
+=======
     <Reference Include="mscorlib" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="Mono.CSharp" />
+    <Reference Include="Microsoft.CSharp" />
+>>>>>>> NextReleases
   </ItemGroup>
-<ItemGroup>
+  <ItemGroup>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+<<<<<<< HEAD
+    <Compile Include="Tools\FileSystem\IFilesSeeker.cs" />
+    <Compile Include="Tools\FileSystem\FileSeeker.cs" />
+    <Compile Include="Tools\FileSystem\ListOfDefaultExtensions.cs" />
+    <Compile Include="Tools\Data\Context\LibraryContext.cs" />
+    <Compile Include="Tools\Data\Context\ModelConfiguration.cs" />
+    <Compile Include="Tools\Data\Models\FileModel.cs" />
+    <Compile Include="Tools\Data\Models\IEntity.cs" />
+    <Compile Include="Tools\Data\Context\LibraryDbInitializer.cs" />
+    <Compile Include="Tools\Data\Models\CustomHistory.cs" />
+    <Compile Include="Tools\Temp\CreateDB.cs" />
+    <Compile Include="Tools\Data\Sqlite\CreateSqliteConnection.cs" />
+=======
+    <Compile Include="CliDrafts\Draft1.cs" />
+>>>>>>> NextReleases
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\PhotoLibrerizerData\PhotoLibrerizerData.csproj">
       <Project>{665C5284-8185-4224-A518-424B872880A2}</Project>
       <Name>PhotoLibrerizerData</Name>
@@ -121,21 +141,10 @@
       <Name>PhotoLibrarizerCore</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Program.cs" />
-    <Compile Include="CliDrafts\Draft1.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tools\Data\Context\LibraryContext.cs" />
-    <Compile Include="Tools\Data\Context\ModelConfiguration.cs" />
-    <Compile Include="Tools\Data\Models\FileModel.cs" />
-    <Compile Include="Tools\Data\Models\IEntity.cs" />
-    <Compile Include="Tools\Data\Context\LibraryDbInitializer.cs" />
-    <Compile Include="Tools\Data\Models\CustomHistory.cs" />
-    <Compile Include="Tools\Temp\CreateDB.cs" />
-    <Compile Include="Tools\Data\Sqlite\CreateSqliteConnection.cs" />
-  </ItemGroup>
-  <ItemGroup>
+<ItemGroup>
     <Folder Include="Tools\" />
+<<<<<<< HEAD
+    <Folder Include="Tools\FileSystem\" />
     <Folder Include="Tools\Data\" />
     <Folder Include="Tools\Data\Models\" />
     <Folder Include="Tools\Data\Context\" />
@@ -147,10 +156,20 @@
   <ItemGroup>
     <None Include="packages.config" />
     <None Include="app.config" />
+=======
+    <Folder Include="CliDrafts\" />
+>>>>>>> NextReleases
   </ItemGroup>
+<ItemGroup>
+  <None Include="app.config" />
+</ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+<<<<<<< HEAD
   <Import Project="..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets" Condition="Exists('..\packages\System.Data.SQLite.Core.1.0.109.2\build\net46\System.Data.SQLite.Core.targets')" />
   <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.11\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.linux.1.1.11\build\net35\SQLitePCLRaw.lib.e_sqlite3.linux.targets')" />
   <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.osx.1.1.11\build\net35\SQLitePCLRaw.lib.e_sqlite3.osx.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.osx.1.1.11\build\net35\SQLitePCLRaw.lib.e_sqlite3.osx.targets')" />
   <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.v110_xp.1.1.11\build\net35\SQLitePCLRaw.lib.e_sqlite3.v110_xp.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.v110_xp.1.1.11\build\net35\SQLitePCLRaw.lib.e_sqlite3.v110_xp.targets')" />
 </Project>
+=======
+</Project>
+>>>>>>> NextReleases
