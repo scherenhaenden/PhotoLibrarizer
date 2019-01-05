@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BFBCF5F6-1708-4916-8CA9-FC85C86B2556}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>PhotoLibrazierCore</RootNamespace>
+    <AssemblyName>PhotoLibrazierCore</AssemblyName>
+    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+<<<<<<< HEAD
+    <Reference Include="XmpCore">
+      <HintPath>..\packages\XmpCore.5.1.3\lib\net35\XmpCore.dll</HintPath>
+    </Reference>
+    <Reference Include="MetadataExtractor">
+      <HintPath>..\packages\MetadataExtractor.2.0.0\lib\net45\MetadataExtractor.dll</HintPath>
+    </Reference>
+    <Reference Include="photo.exif">
+      <HintPath>..\packages\photo.exif.1.1.16.0\lib\net40\photo.exif.dll</HintPath>
+=======
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Serialization" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+>>>>>>> NextReleases
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MyClass.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\FileSystem\ListOfDefaultExtensions.cs" />
+    <Compile Include="Tools\Hash\HashFileGenerator.cs" />
+    <Compile Include="Tools\Hash\IHashFileGenerator.cs" />
+    <Compile Include="Tools\FileSystem\Seeker\FileSeeker.cs" />
+    <Compile Include="Tools\FileSystem\Seeker\IFilesSeeker.cs" />
+    <Compile Include="Tools\FileSystem\Renamer\ChageNameOfFiles.cs" />
+    <Compile Include="Tools\FileSystem\Renamer\IChageNameOfFiles.cs" />
+<<<<<<< HEAD
+    <Compile Include="Tools\Metadata\TestClassMetadataReader.cs" />
+=======
+    <Compile Include="Tools\CliConfiguration\ConfigurationLoader.cs" />
+    <Compile Include="Tools\CliConfiguration\CliConfigurationModel.cs" />
+    <Compile Include="Tools\Serialization\XmlSerialization.cs" />
+    <Compile Include="Tools\Serialization\JsonSerialization.cs" />
+    <Compile Include="Tools\Serialization\ISerialization.cs" />
+>>>>>>> NextReleases
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Tools\" />
+    <Folder Include="Tools\FileSystem\" />
+    <Folder Include="Tools\Hash\" />
+    <Folder Include="Tools\FileSystem\Seeker\" />
+    <Folder Include="Tools\FileSystem\Renamer\" />
+<<<<<<< HEAD
+    <Folder Include="Tools\FileSystem\Neuer Ordner\" />
+    <Folder Include="Tools\Metadata\" />
+=======
+    <Folder Include="Tools\CliConfiguration\" />
+    <Folder Include="Tools\Serialization\" />
+>>>>>>> NextReleases
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

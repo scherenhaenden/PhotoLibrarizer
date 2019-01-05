@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <configuration>
+<<<<<<< HEAD
     <connectionStrings>
     <add name="libraryDB" connectionString="data source=.\db\footballDb\footballDb.sqlite;foreign keys=true" providerName="System.Data.SQLite" />
         <add name="MongoDBContext" connectionString="Offline=False;Server=MyServer;Port=27017;Database=test;User=test;Password=Password;" providerName="System.Data.CData.MongoDB" />
@@ -19,3 +20,7 @@
   </entityFramework>
   </system.data>
 </configuration>
+=======
+    </configuration>
+
+>>>>>>> NextReleases
