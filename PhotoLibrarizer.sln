@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLibrarizerCli", "PhotoLibrarizerCli\PhotoLibrarizerCli.csproj", "{1E31E239-C8F4-4C40-91E5-6527CF698418}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLibrarizerCore", "PhotoLibrazierCore\PhotoLibrarizerCore.csproj", "{BFBCF5F6-1708-4916-8CA9-FC85C86B2556}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLibrarizerCore_obsolete", "PhotoLibrazierCore\PhotoLibrarizerCore_obsolete.csproj", "{BFBCF5F6-1708-4916-8CA9-FC85C86B2556}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{D82E4775-398E-440D-898F-4EA28C6C141D}"
 	ProjectSection(SolutionItems) = preProject
@@ -12,6 +12,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLibrerizerData", "PhotoLibrerizerData\PhotoLibrerizerData.csproj", "{665C5284-8185-4224-A518-424B872880A2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PhotoLibrarizerCore", "PhotoLibrarizerCore", "{FC8390BB-2766-4B80-AF10-360D39C45DE6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLibrarizerCore.Tests", "PhotoLibrarizerCore.Tests\PhotoLibrarizerCore.Tests.csproj", "{0E0C2A4A-41F3-4180-BED8-BE577EB209D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoLibrarizerCore", "PhotoLibrarizerCore\PhotoLibrarizerCore.csproj", "{11E9E2B2-0C67-4190-AF81-9BF03703C7C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,5 +37,19 @@ Global
 		{665C5284-8185-4224-A518-424B872880A2}.Debug|x86.Build.0 = Debug|Any CPU
 		{665C5284-8185-4224-A518-424B872880A2}.Release|x86.ActiveCfg = Release|Any CPU
 		{665C5284-8185-4224-A518-424B872880A2}.Release|x86.Build.0 = Release|Any CPU
+		{0E0C2A4A-41F3-4180-BED8-BE577EB209D9}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0E0C2A4A-41F3-4180-BED8-BE577EB209D9}.Debug|x86.Build.0 = Debug|Any CPU
+		{0E0C2A4A-41F3-4180-BED8-BE577EB209D9}.Release|x86.ActiveCfg = Release|Any CPU
+		{0E0C2A4A-41F3-4180-BED8-BE577EB209D9}.Release|x86.Build.0 = Release|Any CPU
+		{11E9E2B2-0C67-4190-AF81-9BF03703C7C8}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{11E9E2B2-0C67-4190-AF81-9BF03703C7C8}.Debug|x86.Build.0 = Debug|Any CPU
+		{11E9E2B2-0C67-4190-AF81-9BF03703C7C8}.Release|x86.ActiveCfg = Release|Any CPU
+		{11E9E2B2-0C67-4190-AF81-9BF03703C7C8}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{FC8390BB-2766-4B80-AF10-360D39C45DE6} = {D82E4775-398E-440D-898F-4EA28C6C141D}
+		{BFBCF5F6-1708-4916-8CA9-FC85C86B2556} = {FC8390BB-2766-4B80-AF10-360D39C45DE6}
+		{0E0C2A4A-41F3-4180-BED8-BE577EB209D9} = {FC8390BB-2766-4B80-AF10-360D39C45DE6}
+		{11E9E2B2-0C67-4190-AF81-9BF03703C7C8} = {FC8390BB-2766-4B80-AF10-360D39C45DE6}
 	EndGlobalSection
 EndGlobal
