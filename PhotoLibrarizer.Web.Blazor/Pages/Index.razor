@@ -1,0 +1,84 @@
+﻿@page "/"
+@using PhotoLibrarizer.Web.Blazor.Models
+@using PhotoLibrarizer.Web.Blazor.Components
+@using PhotoLibrarizer.BusinessLogic.Services.FileSeeking
+@using PhotoLibrarizer.Web.Blazor.Data
+
+<PageTitle>Index</PageTitle>
+
+<h1>PhotoLibrarizer</h1>
+
+<h3>Create Configuration</h3>
+<div>
+      <div class="form-group">
+            <label for="extensions">Base-Path (destination for files):</label>
+            <input id="extensions" class="form-control" @bind="filterModel.DestinationModel.BasePath" />
+      </div>
+      
+      <MultitextboxComponent paths="filterModel.PathsForSourceFiles"/>
+      
+      
+      
+      <button class="btn btn-primary" @onclick="RunGetFiles">Get Files Raw</button>
+      
+      <div>
+            <!-- add child component logviewer here -->
+            <LogViewer RawInput="@dataService"/>
+      </div>
+      
+        <div>
+                  <!-- add child component logviewer here -->
+                  <LogViewer RawInput="@presentExtensions"/>
+            </div>
+    
+</div>
+@code {
+      
+      IOrderAndCreateLibraryOfMediaWebService businessLogicService = new OrderAndCreateLibraryOfMediaWebService();
+      string dataService = string.Empty;
+      string presentExtensions = string.Empty;
+      
+      public List<string> paths = new List<string>();
+            
+            
+      
+        private FilterWebModel filterModel = new FilterWebModel();
+        protected string concatenatedExtensions = string.Empty;
+        
+        // on init
+        protected override void OnInitialized()
+        {
+              
+              
+                    
+        }
+   
+        private void SaveConfiguration()
+        {
+        // Implement your logic to save the configuration here
+        // You can access the filterModel with the entered values
+        }
+
+      private void RunGetFiles()
+      {
+            var result = businessLogicService.GetFilesInPath(filterModel);
+            AddToOutput(string.Join(Environment.NewLine, result));
+            AddPresentExtensions(string.Join(Environment.NewLine, businessLogicService.GetPresentExtensions()));
+      }
+
+      public void AddToOutput(string message)
+      {
+            dataService += message + Environment.NewLine;
+      }
+      
+      public void AddPresentExtensions(string message)
+      {
+            presentExtensions += message + Environment.NewLine;
+      }
+      
+      public void Dispose()
+      {
+            // Implement your logic to dispose the component here
+      }
+
+} 
