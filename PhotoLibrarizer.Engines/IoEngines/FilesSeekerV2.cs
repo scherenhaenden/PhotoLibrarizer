@@ -7,7 +7,7 @@ public class FilesSeekerV2: IFilesSeekerV2
     {
         List<string> files = Directory
             .GetFiles(path, "*.*", subDirectory ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly)
-            //.Where(file => allowedExtensions.Any(extension => file.EndsWith(extension, comparison)))
+            
             .ToList();
 
         return files;
@@ -22,4 +22,21 @@ public class FilesSeekerV2: IFilesSeekerV2
         return files;
     }
 
+    public List<string> GetFilesInPath(List<string> path, bool subDirectory = true)
+    {
+        return path
+            .SelectMany(path => GetFilesInPath(path,  subDirectory))
+            .ToList();
+    }
+
+    public List<string> GetFilesInPath(List<string> path, List<string>? extensions, bool subDirectory = true, bool caseSensitive = false)
+    {
+        if(extensions == null)
+            return GetFilesInPath(path, subDirectory);
+        
+        
+        return path
+            .SelectMany(path => GetFilesInPath(path, extensions, subDirectory, caseSensitive))
+            .ToList();
+    }
 }
