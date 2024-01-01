@@ -1,10 +1,11 @@
-namespace PhotoLibrarizer.Engines.WaterMarking;
-
-public interface IWaterMarker
+namespace PhotoLibrarizer.Engines.WaterMarking
 {
-    void AddWatermark(string sourceFilePath, string outputFilePath, string watermarkFilePath);
+    public interface IWaterMarker
+    {
+        void AddWatermark(string sourceFilePath, string outputFilePath, string watermarkFilePath);
     
-    Stream AddWatermarkAndGetStream(Stream sourceImageStream, Stream watermarkImageStream);
+        Stream AddWatermarkAndGetStream(Stream sourceImageStream, Stream watermarkImageStream);
     
-    Stream AddWatermarkAndGetStream(Stream sourceImageStream, string watermarkFilePath);
+        Stream AddWatermarkAndGetStream(Stream sourceImageStream, string watermarkFilePath);
+    }
 }
