@@ -1,8 +1,8 @@
-namespace PhotoLibrarizer.Engines.IoEngines;
-
-public static class StreamHelper
+namespace PhotoLibrarizer.Engines.IoEngines
 {
-    public static void ToFile(this Stream stream, string filePath)
+    public static class StreamHelper
+    {
+        public static void ToFile(this Stream stream, string filePath)
     {
         if (stream == null)
             throw new ArgumentNullException(nameof(stream));
@@ -15,5 +15,6 @@ public static class StreamHelper
             stream.Seek(0, SeekOrigin.Begin);
             stream.CopyTo(fileStream);
         }
+    }
     }
 }

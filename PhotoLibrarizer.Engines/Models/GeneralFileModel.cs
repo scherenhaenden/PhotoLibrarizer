@@ -1,6 +1,6 @@
-namespace PhotoLibrarizer.Engines.Models;
-
-public class GeneralFileModel
+namespace PhotoLibrarizer.Engines.Models
+{
+    public class GeneralFileModel
     {    
         protected string _FullPathOfFile;
         protected string _Path;
@@ -8,6 +8,8 @@ public class GeneralFileModel
         protected string _Hash;
         protected FileInfo _GeneralFileInformation;
         protected DateTime _DateCreation;
+        // create protectec property for size
+        protected long _Size;
 
         public DateTime DateCreation
         {
@@ -83,6 +85,15 @@ public class GeneralFileModel
                 _GeneralFileInformation=value;
             }
         }
+        
+        public long Size
+        {
+            get
+            {
+                return _GeneralFileInformation.Length;
+            }
+           
+        }
 
         protected void CheckValues()
         {
@@ -107,3 +118,4 @@ public class GeneralFileModel
             
         }
     }
+}

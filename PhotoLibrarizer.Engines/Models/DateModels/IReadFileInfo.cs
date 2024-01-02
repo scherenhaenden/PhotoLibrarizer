@@ -1,10 +1,11 @@
-namespace PhotoLibrarizer.Engines.Models.DateModels;
-
-public interface IReadFileInfo
+namespace PhotoLibrarizer.Engines.Models.DateModels
 {
-    DateTime? GetDateOfMediaCreation(string filePath);
+    public interface IReadFileInfo
+    {
+        DateTime? GetDateOfMediaCreation(string filePath);
 
-    string GetFileSizeHumanReadable(string filePath);
+        string GetFileSizeHumanReadable(string filePath);
 
-    string GetFileSize(string filePath);
+        string GetFileSize(string filePath);
+    }
 }

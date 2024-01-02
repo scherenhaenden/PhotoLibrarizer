@@ -1,6 +1,7 @@
-namespace PhotoLibrarizer.BusinessLogic.Services.IOService;
-
-public interface IMoveFilesSecure
+namespace PhotoLibrarizer.BusinessLogic.Services.IOService
 {
-    public Task<ResponseModel<bool>> MoveFileAsync(string sourcePath, string destinationPath);
+    public interface IMoveFilesSecure
+    {
+        public Task<ResponseModel<bool>> MoveFileAsync(string sourcePath, string destinationPath);
+    }
 }

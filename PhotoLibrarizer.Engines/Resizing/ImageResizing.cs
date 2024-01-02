@@ -1,10 +1,10 @@
 using ImageMagick;
 
-namespace PhotoLibrarizer.Engines.Resizing;
-
-public class ImageResizing: IImageResizing
+namespace PhotoLibrarizer.Engines.Resizing
 {
-    public bool TryConvertImage(string path,  int width, int height, string newPath = "")
+    public class ImageResizing: IImageResizing
+    {
+        public bool TryConvertImage(string path,  int width, int height, string newPath = "")
     {
         using (var image = new MagickImage(path))
         {
@@ -15,7 +15,7 @@ public class ImageResizing: IImageResizing
         }
     }
 
-    public bool TryConvertImage(Stream input, int width, int height, out Stream? output, out string errorMessage)
+        public bool TryConvertImage(Stream input, int width, int height, out Stream? output, out string errorMessage)
     {
         try
         {
@@ -49,5 +49,6 @@ public class ImageResizing: IImageResizing
             errorMessage = "Error resizing image: " + ex.Message;
             return false;
         }
+    }
     }
 }

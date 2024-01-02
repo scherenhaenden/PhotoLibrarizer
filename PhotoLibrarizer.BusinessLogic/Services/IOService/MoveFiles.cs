@@ -1,10 +1,10 @@
-namespace PhotoLibrarizer.BusinessLogic.Services.IOService;
-
-public class MoveFiles: IMoveFiles
+namespace PhotoLibrarizer.BusinessLogic.Services.IOService
 {
+    public class MoveFiles: IMoveFiles
+    {
     
     
-    public async Task MoveFileAsync(string sourcePath, string destinationPath)
+        public async Task MoveFileAsync(string sourcePath, string destinationPath)
     {
         //Console.WriteLine($"Moving file: {sourcePath} to {destinationPath}");
         await Task.Delay(1); // Simulate some work
@@ -29,5 +29,6 @@ public class MoveFiles: IMoveFiles
         {
             //Console.WriteLine($"File move failed: {sourcePath} to {destinationPath}");
         }
+    }
     }
 }

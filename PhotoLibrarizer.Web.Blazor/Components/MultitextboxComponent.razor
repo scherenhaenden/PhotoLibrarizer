@@ -18,7 +18,7 @@
 id="yourTextAreaId"
                       @onmouseup="HandleMouseUp"
                       @onmousedown="HandleMouseDown"
-                      @onkeydown="HandleKeyDown">@string.Join(Environment.NewLine, paths)</textarea>
+                      @onkeydown="HandleKeyDown">@string.Join(Environment.NewLine, stringObjects)</textarea>
 
         </div>
     </div>
@@ -32,7 +32,7 @@ id="yourTextAreaId"
 @code {
 
     [Parameter]
-    public List<string> paths { get; set; } = new List<string>();
+    public List<string> stringObjects { get; set; } = new List<string>();
     //private List<string> paths = new List<string>();
     private string currentPath = "";
     private HtmlTargetElementAttribute textBoxRef2;
@@ -44,7 +44,7 @@ id="yourTextAreaId"
     {
         if (!string.IsNullOrWhiteSpace(currentPath))
         {
-            paths.Add(currentPath);
+            stringObjects.Add(currentPath);
             currentPath = "";
             RefreshTextArea();
         }
@@ -53,7 +53,7 @@ id="yourTextAreaId"
     private void RefreshTextArea()
     {
         // Use JavaScript interop to update the textarea content
-        JSRuntime.InvokeVoidAsync("updateTextAreaContent", textBoxRef, string.Join(Environment.NewLine, paths));
+        JSRuntime.InvokeVoidAsync("updateTextAreaContent", textBoxRef, string.Join(Environment.NewLine, stringObjects));
     }
 
     private async Task HandleMouseUp(EventArgs e)

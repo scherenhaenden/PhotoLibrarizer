@@ -1,9 +1,9 @@
-namespace PhotoLibrarizer.Engines.IoEngines;
-
-public class FilesSeekerV2: IFilesSeekerV2
+namespace PhotoLibrarizer.Engines.IoEngines
 {
+    public class FilesSeekerV2: IFilesSeekerV2
+    {
 
-    public List<string> GetFilesInPath(string path, bool subDirectory = true)
+        public List<string> GetFilesInPath(string path, bool subDirectory = true)
     {
         List<string> files = Directory
             .GetFiles(path, "*.*", subDirectory ? SearchOption.AllDirectories : SearchOption.TopDirectoryOnly)
@@ -13,7 +13,7 @@ public class FilesSeekerV2: IFilesSeekerV2
         return files;
     }
 
-    public List<string> GetFilesInPath(string path, List<string> extensions, bool subDirectory = true, bool caseSensitive = false)
+        public List<string> GetFilesInPath(string path, List<string> extensions, bool subDirectory = true, bool caseSensitive = false)
     {
         var files = GetFilesInPath(path, subDirectory);
         StringComparison comparison = caseSensitive ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
@@ -22,14 +22,14 @@ public class FilesSeekerV2: IFilesSeekerV2
         return files;
     }
 
-    public List<string> GetFilesInPath(List<string> path, bool subDirectory = true)
+        public List<string> GetFilesInPath(List<string> path, bool subDirectory = true)
     {
         return path
             .SelectMany(path => GetFilesInPath(path,  subDirectory))
             .ToList();
     }
 
-    public List<string> GetFilesInPath(List<string> path, List<string>? extensions, bool subDirectory = true, bool caseSensitive = false)
+        public List<string> GetFilesInPath(List<string> path, List<string>? extensions, bool subDirectory = true, bool caseSensitive = false)
     {
         if(extensions == null)
             return GetFilesInPath(path, subDirectory);
@@ -38,5 +38,6 @@ public class FilesSeekerV2: IFilesSeekerV2
         return path
             .SelectMany(path => GetFilesInPath(path, extensions, subDirectory, caseSensitive))
             .ToList();
+    }
     }
 }

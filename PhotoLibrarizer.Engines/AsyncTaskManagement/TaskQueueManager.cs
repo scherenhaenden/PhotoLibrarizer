@@ -1,17 +1,17 @@
-namespace PhotoLibrarizer.Engines.AsyncTaskManagement;
-
-public class TaskQueueManager : ITaskQueueManager
+namespace PhotoLibrarizer.Engines.AsyncTaskManagement
 {
-    private readonly SemaphoreSlim semaphore;
-    private readonly Queue<Func<Task>> taskQueue;
+    public class TaskQueueManager : ITaskQueueManager
+    {
+        private readonly SemaphoreSlim semaphore;
+        private readonly Queue<Func<Task>> taskQueue;
 
-    public TaskQueueManager(int maxConcurrentTasks)
+        public TaskQueueManager(int maxConcurrentTasks)
     {
         semaphore = new SemaphoreSlim(maxConcurrentTasks);
         taskQueue = new Queue<Func<Task>>();
     }
     
-    public async Task ProcessQueueWithDynamicParallelism()
+        public async Task ProcessQueueWithDynamicParallelism()
     {
         var maxParallelTasks = 3; // Maximum number of tasks to run in parallel
         var semaphore = new SemaphoreSlim(maxParallelTasks);
@@ -40,7 +40,7 @@ public class TaskQueueManager : ITaskQueueManager
         }
     }
     
-    public async Task ProcessQueueInBatchedParallelism()
+        public async Task ProcessQueueInBatchedParallelism()
     {
         var requiredParallelTasks = 3; // Minimum number of tasks to run in parallel
         var semaphore = new SemaphoreSlim(requiredParallelTasks);
@@ -63,7 +63,7 @@ public class TaskQueueManager : ITaskQueueManager
         }
     }
 
-    public async Task EnqueueAndRunTask(Func<Task> taskFunc)
+        public async Task EnqueueAndRunTask(Func<Task> taskFunc)
     {
         await semaphore.WaitAsync(); // Wait until a slot is available
         try
@@ -76,7 +76,7 @@ public class TaskQueueManager : ITaskQueueManager
         }
     }
 
-    public async Task ProcessQueueSequentially()
+        public async Task ProcessQueueSequentially()
     {
         while (taskQueue.Count > 0)
         {
@@ -85,8 +85,9 @@ public class TaskQueueManager : ITaskQueueManager
         }
     }
 
-    public void AddTask(Func<Task> taskFunc)
+        public void AddTask(Func<Task> taskFunc)
     {
         taskQueue.Enqueue(taskFunc);
+    }
     }
 }

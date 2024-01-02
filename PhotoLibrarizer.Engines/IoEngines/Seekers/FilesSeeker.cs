@@ -1,19 +1,19 @@
-namespace PhotoLibrarizer.Engines.IoEngines;
-
-public class FilesSeeker: IFilesSeeker
+namespace PhotoLibrarizer.Engines.IoEngines
 {
+    public class FilesSeeker: IFilesSeeker
+    {
 
-    public List<string> GetFilesInPath(string path, bool subDirectory = true)
+        public List<string> GetFilesInPath(string path, bool subDirectory = true)
     {
         return GetSeekedFiles(path, new ListOfDefaultExtensions().Extensions());
     }
 
-    public List<string> GetFilesInPath(string path, List<string> extensions, bool subDirectory = true, bool caseSensitive = false)
+        public List<string> GetFilesInPath(string path, List<string> extensions, bool subDirectory = true, bool caseSensitive = false)
     {
         return GetSeekedFiles(path, extensions.ToArray(), caseSensitive);
     }
 
-    private List<string> GetSeekedFiles(string pathToLookFor, string[] allowedExtensions, bool subDirectory = true, bool caseSensitive = false)
+        private List<string> GetSeekedFiles(string pathToLookFor, string[] allowedExtensions, bool subDirectory = true, bool caseSensitive = false)
     {
         StringComparison comparison = caseSensitive ? StringComparison.Ordinal : StringComparison.OrdinalIgnoreCase;
 
@@ -25,4 +25,5 @@ public class FilesSeeker: IFilesSeeker
         return files;
     }
 
+    }
 }

@@ -1,8 +1,8 @@
-namespace PhotoLibrarizer.Engines.IoEngines;
-
-public class FileToStreamConverter:IFileToStreamConverter
+namespace PhotoLibrarizer.Engines.IoEngines
 {
-    public Stream? TryConvertFileToStream(string filePath, out string errorMessage)
+    public class FileToStreamConverter:IFileToStreamConverter
+    {
+        public Stream? TryConvertFileToStream(string filePath, out string errorMessage)
     {
         if (string.IsNullOrEmpty(filePath))
         {
@@ -27,5 +27,6 @@ public class FileToStreamConverter:IFileToStreamConverter
 
         errorMessage = string.Empty;
         return memoryStream;
+    }
     }
 }

@@ -1,27 +1,28 @@
 using Directory = MetadataExtractor.Directory;
 
-namespace PhotoLibrarizer.Engines.Models;
-
-public class FileModel:GeneralFileModel
+namespace PhotoLibrarizer.Engines.Models
 {
-    
-    public Dictionary<string, DateTime> KeyDatesMetadata = new Dictionary<string, DateTime> ();
-    
-    public Dictionary<string, string> KeyMetadata = new Dictionary<string, string> ();
-
-    public List<MetadataExtractor.Directory>? Directories = new List<Directory>();
-    
-    public FileModel ()
+    public class FileModel:GeneralFileModel
     {
-    }
-    private void any()
-    {
-			
-    }
-}
+    
+        public Dictionary<string, DateTime> KeyDatesMetadata = new Dictionary<string, DateTime> ();
+    
+        public Dictionary<string, string> KeyMetadata = new Dictionary<string, string> ();
 
-public class FileModelMoving:FileModel
-{
+        public List<Directory>? Directories = new List<Directory>();
+    
+        public FileModel ()
+        {
+        }
+        private void any()
+        {
+			    
+        }
+    }
+
+    public class FileModelMoving:FileModel
+    {
     
     
+    }
 }

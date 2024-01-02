@@ -1,10 +1,11 @@
-namespace PhotoLibrarizer.Engines.AsyncTaskManagement;
-
-public interface ITaskQueueManager
+namespace PhotoLibrarizer.Engines.AsyncTaskManagement
 {
-    Task ProcessQueueWithDynamicParallelism();
-    Task ProcessQueueInBatchedParallelism();
-    Task EnqueueAndRunTask(Func<Task> taskFunc);
-    Task ProcessQueueSequentially();
-    void AddTask(Func<Task> taskFunc);
+    public interface ITaskQueueManager
+    {
+        Task ProcessQueueWithDynamicParallelism();
+        Task ProcessQueueInBatchedParallelism();
+        Task EnqueueAndRunTask(Func<Task> taskFunc);
+        Task ProcessQueueSequentially();
+        void AddTask(Func<Task> taskFunc);
+    }
 }

@@ -1,6 +1,7 @@
-namespace PhotoLibrarizer.Engines.IoEngines;
-
-public interface IFileToStreamConverter
+namespace PhotoLibrarizer.Engines.IoEngines
 {
-    Stream? TryConvertFileToStream(string filePath, out string errorMessage);
+    public interface IFileToStreamConverter
+    {
+        Stream? TryConvertFileToStream(string filePath, out string errorMessage);
+    }
 }

@@ -1,8 +1,8 @@
-namespace PhotoLibrarizer.Engines.Models;
-
-public class GenerateFiles
+namespace PhotoLibrarizer.Engines.Models
 {
-    public List<FileModel> StringsToModels(string [] Files)
+    public class GenerateFiles
+    {
+        public List<FileModel> StringsToModels(string [] Files)
     {
         List<FileModel> AllFiles = new List<FileModel> ();
         FileModel TempFile;
@@ -15,4 +15,5 @@ public class GenerateFiles
         return AllFiles;
     }
 
+    }
 }

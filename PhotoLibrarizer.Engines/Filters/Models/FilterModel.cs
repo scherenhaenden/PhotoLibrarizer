@@ -1,15 +1,16 @@
-namespace PhotoLibrarizer.Engines.Filters.Models;
-
-public class FilterModel
+namespace PhotoLibrarizer.Engines.Filters.Models
 {
-    public List<string>? Extensions { get; set; }
+    public class FilterModel
+    {
+        public List<string>? Extensions { get; set; }
     
-    public List<string>? PathsForSourceFiles { get; set; }
-    public List<string>? CamerasShouldBe { get; set; }
-    public List<string>? CamerasShouldNotBe { get; set; }
+        public List<string>? PathsForSourceFiles { get; set; }
+        public List<string>? CamerasShouldBe { get; set; }
+        public List<string>? CamerasShouldNotBe { get; set; }
     
-    public string GalleryBaseDirectory { get; set; } = null!;
-    public int MaxFiles { get; set; }
+        public string GalleryBaseDirectory { get; set; } = null!;
+        public int MaxFiles { get; set; }
 
-    public DestinationModel DestinationModel { get; set; } = null!;
+        public DestinationModel DestinationModel { get; set; } = null!;
+    }
 }

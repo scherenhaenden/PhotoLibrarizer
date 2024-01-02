@@ -1,6 +1,7 @@
-namespace PhotoLibrarizer.Engines.Hashing;
-
-public interface IFileHasher
+namespace PhotoLibrarizer.Engines.Hashing
 {
-    public string GetMD5ByFilePath(string path);
+    public interface IFileHasher
+    {
+        public string GetMD5ByFilePath(string path);
+    }
 }

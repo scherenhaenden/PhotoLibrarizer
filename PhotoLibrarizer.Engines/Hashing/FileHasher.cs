@@ -1,10 +1,10 @@
 using System.Security.Cryptography;
 
-namespace PhotoLibrarizer.Engines.Hashing;
-
-public class FileHasher : IFileHasher
+namespace PhotoLibrarizer.Engines.Hashing
 {
-    public string GetMD5ByFilePath(string path)
+    public class FileHasher : IFileHasher
+    {
+        public string GetMD5ByFilePath(string path)
     {
         var sFile = new BufferedStream(File.OpenRead(path), 1200000);
         var hashvalue = MD5.Create();
@@ -12,5 +12,6 @@ public class FileHasher : IFileHasher
         sFile.Flush();
         sFile.Close();
         return first;
+    }
     }
 }

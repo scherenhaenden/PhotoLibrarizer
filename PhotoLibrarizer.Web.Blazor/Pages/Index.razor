@@ -1,7 +1,6 @@
 ﻿@page "/"
 @using PhotoLibrarizer.Web.Blazor.Models
 @using PhotoLibrarizer.Web.Blazor.Components
-@using PhotoLibrarizer.BusinessLogic.Services.FileSeeking
 @using PhotoLibrarizer.Web.Blazor.Data
 
 <PageTitle>Index</PageTitle>
@@ -14,12 +13,47 @@
             <label for="extensions">Base-Path (destination for files):</label>
             <input id="extensions" class="form-control" @bind="filterModel.DestinationModel.BasePath" />
       </div>
+      <div>
+            <p>look for files</p>
+      </div>
       
-      <MultitextboxComponent paths="filterModel.PathsForSourceFiles"/>
+      
+      <p>Paths to look for pictures</p>
+      <MultitextboxComponent stringObjects="filterModel.PathsForSourceFiles"/>
+      
+      <p>Cameras Should Be</p>
+      <MultitextboxComponent stringObjects="filterModel.CamerasShouldBe"/>
+      
+      <p>Cameras Should Not Be</p>
+      <MultitextboxComponent stringObjects="filterModel.CamerasShouldNotBe"/>
+      
+      <p>Extensions</p>
+      <MultitextboxComponent stringObjects="filterModel.Extensions"/>
+      
+      <!-- add 2 binding text for a number-->
+      <div class="form-group">
+            <label for="extensions">Max-Number-Of-Files:</label>
+            <input id="extensions" class="form-control" @bind="filterModel.MaxFiles" />
+      </div>
+      
+      <h3>Enum Dropdown Example</h3>
+      
+      
+      
+      <!-- Create a dropdown bound to the SelectedDestination property -->
+      <InputSelect @bind-Value="filterModel.DestinationModel">
+          @foreach (DestinationsWebEnum destination in Enum.GetValues(typeof(DestinationsWebEnum)))
+          {
+              <option value="@destination.ToString()">@destination.ToString()</option>
+          }
+      </InputSelect>
       
       
       
       <button class="btn btn-primary" @onclick="RunGetFiles">Get Files Raw</button>
+      <button class="btn btn-primary" @onclick="RunOrdering">OrderPictures</button>
+      
+   
       
       <div>
             <!-- add child component logviewer here -->
@@ -34,9 +68,13 @@
 </div>
 @code {
       
+      private DestinationsWebEnum selectedDestination = DestinationsWebEnum.BaseLibraryWithoutDate;
+
+      
       IOrderAndCreateLibraryOfMediaWebService businessLogicService = new OrderAndCreateLibraryOfMediaWebService();
       string dataService = string.Empty;
       string presentExtensions = string.Empty;
+      string filterModelAsJson = string.Empty;
       
       public List<string> paths = new List<string>();
             
@@ -65,6 +103,22 @@
             AddToOutput(string.Join(Environment.NewLine, result));
             AddPresentExtensions(string.Join(Environment.NewLine, businessLogicService.GetPresentExtensions()));
       }
+
+      private async Task RunOrdering()
+      {
+            try
+            {
+                  var result = await businessLogicService.OrderRoutine(filterModel);
+            }catch(Exception e)
+            {
+                  AddToOutput(e.Message);
+            }
+
+      
+            //AddToOutput(string.Join(Environment.NewLine, result));
+            //AddPresentExtensions(string.Join(Environment.NewLine, businessLogicService.GetPresentExtensions()));
+      }
+
 
       public void AddToOutput(string message)
       {

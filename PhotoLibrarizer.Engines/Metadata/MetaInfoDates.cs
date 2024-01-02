@@ -2,13 +2,13 @@ using System.Globalization;
 using MetadataExtractor;
 using Directory = MetadataExtractor.Directory;
 
-namespace PhotoLibrarizer.Engines.Metadata;
-
-using doob=photo.exif;
-
-public class MetaInfoDates
+namespace PhotoLibrarizer.Engines.Metadata
 {
-	public DateTime? photo_exif(string PathToPicture)
+	using doob=photo.exif;
+
+	public class MetaInfoDates
+	{
+		public DateTime? photo_exif(string PathToPicture)
 	{
 		doob.Parser Prs = new doob.Parser ();
 		IEnumerable<photo.exif.ExifItem> MetaItemsPhotos = Prs.Parse (PathToPicture);
@@ -40,12 +40,12 @@ public class MetaInfoDates
 		return null;			
 	}
 	
-    IReadOnlyList<Directory> h;
-    private IReadOnlyList<Directory> getH( string path) 
+		IReadOnlyList<Directory> h;
+		private IReadOnlyList<Directory> getH( string path) 
     {
         return ImageMetadataReader.ReadMetadata(path);
     }
-    private async Task DoWork2Async(string path)
+		private async Task DoWork2Async(string path)
     {
         Task.Run(() =>
         {
@@ -53,7 +53,7 @@ public class MetaInfoDates
         }).Wait(3000);
     }
     
-    public DateTime? GetDataOfImageCreation(string PathToImage)
+		public DateTime? GetDataOfImageCreation(string PathToImage)
     {
 	    try
 	    {
@@ -68,7 +68,7 @@ public class MetaInfoDates
     }
     
     
-    public DateTime? MetadataExtractorMethod(string path)
+		public DateTime? MetadataExtractorMethod(string path)
     {
         MetadataExtractor.Formats.FileSystem.FileMetadataReader DRR = new MetadataExtractor.Formats.FileSystem.FileMetadataReader ();
         MetadataExtractor.Formats.FileSystem.FileMetadataDirectory Readded=DRR.Read (path);
@@ -118,7 +118,7 @@ public class MetaInfoDates
         return null;			
     }
     
-    private DateTime? FindXMPDirectoryTag(List<Directory> values)
+		private DateTime? FindXMPDirectoryTag(List<Directory> values)
     {
         try
         {
@@ -137,7 +137,7 @@ public class MetaInfoDates
         return null;
     }
     
-    DateTime? Loops(IReadOnlyList<Tag> Vals)
+		DateTime? Loops(IReadOnlyList<Tag> Vals)
 		{
 			foreach (Tag ITEM in Vals) 
 			{
@@ -229,4 +229,5 @@ public class MetaInfoDates
 			}
 			return null;
 		}
+	}
 }

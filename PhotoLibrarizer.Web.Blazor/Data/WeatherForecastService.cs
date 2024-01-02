@@ -1,13 +1,13 @@
-namespace PhotoLibrarizer.Web.Blazor.Data;
-
-public class WeatherForecastService
+namespace PhotoLibrarizer.Web.Blazor.Data
 {
-    private static readonly string[] Summaries = new[]
+    public class WeatherForecastService
+    {
+        private static readonly string[] Summaries = new[]
     {
         "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
+    }        ;
 
-    public Task<WeatherForecast[]> GetForecastAsync(DateOnly startDate)
+        public Task<WeatherForecast[]> GetForecastAsync(DateOnly startDate)
     {
         return Task.FromResult(Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
@@ -15,5 +15,6 @@ public class WeatherForecastService
             TemperatureC = Random.Shared.Next(-20, 55),
             Summary = Summaries[Random.Shared.Next(Summaries.Length)]
         }).ToArray());
+    }
     }
 }

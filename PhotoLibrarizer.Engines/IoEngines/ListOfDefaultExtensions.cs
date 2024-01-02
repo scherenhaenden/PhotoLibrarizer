@@ -1,8 +1,8 @@
-namespace PhotoLibrarizer.Engines.IoEngines;
-
-public class ListOfDefaultExtensions
+namespace PhotoLibrarizer.Engines.IoEngines
 {
-    public string[] Extensions()
+    public class ListOfDefaultExtensions
+    {
+        public string[] Extensions()
     {
 
         var imagesExtensions = new List<string>();
@@ -61,5 +61,6 @@ public class ListOfDefaultExtensions
 
         AllowedExtensions = imagesExtensions.ToArray();
         return AllowedExtensions;
+    }
     }
 }

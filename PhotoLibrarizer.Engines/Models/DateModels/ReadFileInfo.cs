@@ -1,10 +1,10 @@
 using PhotoLibrarizer.Engines.Metadata;
 
-namespace PhotoLibrarizer.Engines.Models.DateModels;
-
-public class ReadFileInfo : IReadFileInfo
+namespace PhotoLibrarizer.Engines.Models.DateModels
 {
-    public DateTime? GetDateOfMediaCreation(string filePath) 
+    public class ReadFileInfo : IReadFileInfo
+    {
+        public DateTime? GetDateOfMediaCreation(string filePath) 
     {
         try
         {
@@ -17,12 +17,12 @@ public class ReadFileInfo : IReadFileInfo
         
     }
     
-    public string GetFileSize(string filePath) 
+        public string GetFileSize(string filePath) 
     {
         return new FileInfo(filePath).Length.ToString();
     }
 
-    public string GetFileSizeHumanReadable(string filePath)
+        public string GetFileSizeHumanReadable(string filePath)
     {
         FileInfo f = new FileInfo(filePath);
         long s1 = f.Length;
@@ -36,5 +36,6 @@ public class ReadFileInfo : IReadFileInfo
         if (f.Length >= (1 << 10))
             sLen = string.Format("{0}Kb", f.Length >> 10);
         return sLen;
+    }
     }
 }

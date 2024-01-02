@@ -2,11 +2,11 @@ using Newtonsoft.Json;
 using PhotoLibrarizer.BusinessLogic.Models;
 using PhotoLibrarizer.Web.Blazor.Models;
 
-namespace PhotoLibrarizer.Web.Blazor.Mapper;
-
-public class MapperFilters
+namespace PhotoLibrarizer.Web.Blazor.Mapper
 {
-    public static FilterBusinessLogicModel Map(FilterWebModel filterWebModel)
+    public class MapperFilters
+    {
+        public static FilterBusinessLogicModel Map(FilterWebModel filterWebModel)
     {
         /*var filterBusinessLogicModel = new FilterBusinessLogicModel();
         filterBusinessLogicModel.PathsForSourceFiles = filterWebModel.PathsForSourceFiles;
@@ -17,7 +17,7 @@ public class MapperFilters
         return filterBusinessLogicModel;
     }
     
-    public static FilterWebModel Map(FilterBusinessLogicModel filterBusinessLogicModel)
+        public static FilterWebModel Map(FilterBusinessLogicModel filterBusinessLogicModel)
     {
         /*var filterWebModel = new FilterWebModel();
         filterWebModel.PathsForSourceFiles = filterBusinessLogicModel.PathsForSourceFiles;
@@ -26,5 +26,6 @@ public class MapperFilters
         // map using json
         var filterWebModel = JsonConvert.DeserializeObject<FilterWebModel>(JsonConvert.SerializeObject(filterBusinessLogicModel));
         return filterWebModel;
+    }
     }
 }

@@ -1,11 +1,11 @@
 using System.Globalization;
 using MetadataExtractor;
 
-namespace PhotoLibrarizer.Engines.Metadata;
-
-public class MetaInfoDatesV2
+namespace PhotoLibrarizer.Engines.Metadata
 {
-    public DateTime? PhotoExif(string pathToPicture)
+    public class MetaInfoDatesV2
+    {
+        public DateTime? PhotoExif(string pathToPicture)
     {
         IEnumerable<MetadataExtractor.Directory> directories = ImageMetadataReader.ReadMetadata(pathToPicture);
         
@@ -34,7 +34,7 @@ public class MetaInfoDatesV2
         return null;
     }
 
-    public DateTime? MetadataExtractorMethod(string path)
+        public DateTime? MetadataExtractorMethod(string path)
     {
         List<MetadataExtractor.Directory> directories = new List<MetadataExtractor.Directory>();
         
@@ -72,7 +72,7 @@ public class MetaInfoDatesV2
         return null;
     }
 
-    private DateTime? FindXMPDirectoryTag(List<MetadataExtractor.Directory> directories)
+        private DateTime? FindXMPDirectoryTag(List<MetadataExtractor.Directory> directories)
     {
         try
         {
@@ -97,7 +97,7 @@ public class MetaInfoDatesV2
         return null;
     }
 
-    private DateTime? Loops(List<MetadataExtractor.Tag> tags)
+        private DateTime? Loops(List<MetadataExtractor.Tag> tags)
     {
         foreach (var tag in tags)
         {
@@ -171,5 +171,6 @@ public class MetaInfoDatesV2
         }
 
         return null;
+    }
     }
 }
