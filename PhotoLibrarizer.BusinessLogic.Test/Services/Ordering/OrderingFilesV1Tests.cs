@@ -182,7 +182,7 @@ public class OrderingFilesV1Tests
         
         
         
-        filterBusinessLogicModel.MaxFiles = 10;
+        filterBusinessLogicModel.MaxFiles = 1000;
         filterBusinessLogicModel.Extensions = new List<string>() {".jpg", ".nef"};
         
         
@@ -198,13 +198,22 @@ public class OrderingFilesV1Tests
     {
         FilterBusinessLogicModel filterBusinessLogicModel = new FilterBusinessLogicModel();
         
-        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/TakeALook");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Swap/Eva/pics/2013");
+  
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld2");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2011");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2012");
+        /*filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/HuaweiCloud");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/AUseThisOne/100ANDRO");*/
+        
+        
+        /*filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/TakeALook");*/
         /*filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/TakeALookV2");
         filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/TakeALookV3");
         filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/TakeALookV4");
-        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/TakeALookV5");
-        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/HuaweiCloud");
-        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Swap/Eva/pics/2014");*/
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/TakeALookV5");*/
+        /*filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/HuaweiCloud");*/
+        //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Swap/Eva/pics");
         //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Swap/Eva/warn");
         //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld");
         //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld2");
@@ -279,7 +288,7 @@ public class OrderingFilesV1Tests
         
         
         filterBusinessLogicModel.MaxFiles = 2000;
-        filterBusinessLogicModel.MaxFiles = 2;
+        filterBusinessLogicModel.MaxFiles = 2000;
         filterBusinessLogicModel.Extensions = new List<string>() {".jpg", ".nef"};
         
         
