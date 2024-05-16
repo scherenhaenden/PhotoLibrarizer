@@ -110,8 +110,18 @@ public class OrderingFilesV1Tests
     {
         FilterBusinessLogicModel filterBusinessLogicModel = new FilterBusinessLogicModel();
         
-        filterBusinessLogicModel.PathsForSourceFiles.Add("/Users/edwardflores/Pictures/30");
-        filterBusinessLogicModel.PathsForSourceFiles.Add("/Users/edwardflores/Pictures/test");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add("/Users/edwardflores/Pictures/30");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add("/Users/edwardflores/Pictures/test");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/_ForGalleryRightAhead");
+        
+        ///Volumes/Edward/_ForGalleryRightAhead/NIKON Z 6/2023
+        ///
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead/NIKON Z 6/2022");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead/NIKON Z 6/2021");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead/NIKON Z 6/2020");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead/NIKON Z 6/2019");
+        
         filterBusinessLogicModel.DestinationModel.BasePath = "/Volumes/Edward/Gallery";
         
         var destinationModel = new DestinationBusinessLogicModel();
@@ -182,12 +192,13 @@ public class OrderingFilesV1Tests
         
         
         
-        filterBusinessLogicModel.MaxFiles = 1000;
-        filterBusinessLogicModel.Extensions = new List<string>() {".jpg", ".nef"};
+        filterBusinessLogicModel.MaxFiles = 10000;
+        filterBusinessLogicModel.Extensions = new List<string>() {".jpg", ".nef", ".dng"};
         
         
         IOrderingFilesV1 orderingFilesV1 = new OrderingFilesV1();
-        await orderingFilesV1.OrderFiles(filterBusinessLogicModel);
+        //await orderingFilesV1.OrderFiles(filterBusinessLogicModel, true);
+        await orderingFilesV1.MultiThreadedOrderFiles(filterBusinessLogicModel, true);
         
         Assert.Pass();
     }
@@ -198,13 +209,76 @@ public class OrderingFilesV1Tests
     {
         FilterBusinessLogicModel filterBusinessLogicModel = new FilterBusinessLogicModel();
         
-        //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Swap/Eva/pics/2013");
-  
-        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld2");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Users/edwardflores/Pictures/Kamera Uploads");
+        ///Volumes/Edward/GalleryOld/2019/08
+        // get all the direct subdirectories of path
+        /*var directories = Directory.GetDirectories(@"/Volumes/Edward/Raws/Fotos_new/2016").ToList();
+        
+        directories.AddRange(Directory.GetDirectories(@"/Volumes/Edward/Raws/Fotos").ToList());
+        
+        directories = directories.Take(10).ToList();
+
+        foreach (var directory in directories)
+        {
+            filterBusinessLogicModel.PathsForSourceFiles.Add(directory);
+        }*/
+        
+        
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/Raws/Fotos");
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/Raws/Fotos_new/2016");
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/GalleryOld/2019/08");
+        
+        
+        /*filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Swap");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/AAUseThisOne");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Raws");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Swap/AUseThisOne");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Swap/Los Globos");
+        
+        
+        //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2014/01");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2009");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2010");
         filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2011");
         filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2012");
-        /*filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/HuaweiCloud");
-        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/AUseThisOne/100ANDRO");*/
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2013");*/
+        //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2014/03");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2014/04");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2014/05");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2014/06");
+        /*filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2014/07");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2014/08");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2014/09");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2014/10");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2014/11");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2014/12");*/
+
+        
+        //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2023");
+        
+        //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/HuaweiCloud/All");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Swap");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Raws");
+        /*filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2007");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2008");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2009");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2010");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2011");/*
+        //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/HuaweiCloud/All");
+  
+        /*filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Swap/Eva/pics/2010");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Swap/Eva/pics/2011");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Swap/Eva/pics/2012");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Swap/Eva/pics/2013");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Swap/Eva/pics/2014");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Swap/Eva/pics/2015");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Swap/Eva/pics/2016");*/
+        /*filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Swap/Eva/pics/2017");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Swap/Eva/pics/2018");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2011");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/GalleryOld/2012");
+        filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/HuaweiCloud");*/
+
         
         
         /*filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/TakeALook");*/
@@ -287,13 +361,13 @@ public class OrderingFilesV1Tests
         
         
         
-        filterBusinessLogicModel.MaxFiles = 2000;
-        filterBusinessLogicModel.MaxFiles = 2000;
-        filterBusinessLogicModel.Extensions = new List<string>() {".jpg", ".nef"};
+        
+        filterBusinessLogicModel.MaxFiles = 150;
+        filterBusinessLogicModel.Extensions = new List<string>() {".jpg", ".nef", ".dng"};
         
         
         IOrderingFilesV1 orderingFilesV1 = new OrderingFilesV1();
-        await orderingFilesV1.OrderFiles(filterBusinessLogicModel, true);
+        await orderingFilesV1.MultiThreadedOrderFiles(filterBusinessLogicModel, true);
         
         Assert.Pass();
     }
