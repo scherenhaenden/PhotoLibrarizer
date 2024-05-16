@@ -1,0 +1,77 @@
+@page "/Test"
+@using PhotoLibrarizer.Web.Blazor.Models
+
+<h3>Test</h3>
+
+@code {
+    
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title></title>
+</head>
+<body>
+<div>
+    <h3>Filter Configuration</h3>
+    
+
+   
+    <div class="form-group">
+        <label for="extensions">Extensions:</label>
+        <input id="extensions" class="form-control" @bind="filterModel.Extensions" />
+    </div>
+<!--
+<div class="form-group">
+    <label for="pathsForSourceFiles">Paths for Source Files:</label>
+    <input id="pathsForSourceFiles" class="form-control" @bind="filterModel.PathsForSourceFiles" />
+</div>
+   
+<div class="form-group">
+    <label for="camerasShouldBe">Cameras Should Be:</label>
+    <input id="camerasShouldBe" class="form-control" @bind="filterModel.CamerasShouldBe" />
+</div>
+   
+<div class="form-group">
+    <label for="camerasShouldNotBe">Cameras Should Not Be:</label>
+    <input id="camerasShouldNotBe" class="form-control" @bind="filterModel.CamerasShouldNotBe" />
+</div>
+   
+<div class="form-group">
+    <label for="maxFiles">Max Files:</label>
+    <input id="maxFiles" class="form-control" @bind="filterModel.MaxFiles" />
+</div>
+   
+<div class="form-group">
+    <label for="basePath">Base Path:</label>
+    <input id="basePath" class="form-control" @bind="filterModel.DestinationModel.BasePath" />
+</div>
+   
+<div class="form-group">
+    <label for="destination">Destination:</label>
+    <select id="destination" class="form-control" @bind="filterModel.DestinationModel.Destination">
+        <option value="BaseLibraryWithoutDate">Base Library Without Date</option>
+        <option value="BaseLibraryWithDate">Base Library With Date</option>
+        <option value="CameraBasedDirectoryWithoutDate">Camera Based Directory Without Date</option>
+        <option value="CameraBasedDirectoryWithDate">Camera Based Directory With Date</option>
+    </select>
+</div>
+   
+<button class="btn btn-primary" @onclick="SaveConfiguration">Save Configuration</button>
+<button class="btn btn-link" @onclick="() => SaveConfiguration()">&gt;</button>
+-->
+   
+    @code {
+        private FilterWebModel filterModel = new FilterWebModel();
+   
+        private void SaveConfiguration()
+        {
+        // Implement your logic to save the configuration here
+        // You can access the filterModel with the entered values
+        }
+    } 
+</div>
+</body>
+</html>

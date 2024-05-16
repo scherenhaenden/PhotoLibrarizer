@@ -1,0 +1,54 @@
+@page "/log"
+
+@using System.Text
+
+<h3>Log Viewer</h3>
+
+<div class="mb-3">
+    <button class="btn btn-primary" @onclick="ClearLog">Clear Log</button>
+</div>
+
+<div>
+    <textarea class="form-control" rows="10" readonly>@logText</textarea>
+</div>
+
+@code {
+    private StringBuilder logText = new StringBuilder();
+    
+    
+    private string? rawInput;
+
+    [Parameter]
+    public string? RawInput
+    {
+        get { return rawInput; }
+        set
+        {
+    // Your custom logic here, if needed
+            if (rawInput != value && value != null)
+            {
+                rawInput = value;
+                Log(rawInput);
+    // Additional logic if needed, such as updating the UI
+            }
+        }
+    }
+
+    private void Log(string message)
+    {
+        logText.Append($"{DateTime.Now}: {message}\n");
+        StateHasChanged(); // Notify Blazor to update the UI
+    }
+
+    private void ClearLog()
+    {
+        logText.Clear();
+        StateHasChanged(); // Notify Blazor to update the UI
+    }
+
+    protected override void OnInitialized()
+    {
+        
+        
+    }
+}

@@ -1,0 +1,138 @@
+﻿@page "/"
+@using PhotoLibrarizer.Web.Blazor.Models
+@using PhotoLibrarizer.Web.Blazor.Components
+@using PhotoLibrarizer.Web.Blazor.Data
+
+<PageTitle>Index</PageTitle>
+
+<h1>PhotoLibrarizer</h1>
+
+<h3>Create Configuration</h3>
+<div>
+      <div class="form-group">
+            <label for="extensions">Base-Path (destination for files):</label>
+            <input id="extensions" class="form-control" @bind="filterModel.DestinationModel.BasePath" />
+      </div>
+      <div>
+            <p>look for files</p>
+      </div>
+      
+      
+      <p>Paths to look for pictures</p>
+      <MultitextboxComponent stringObjects="filterModel.PathsForSourceFiles"/>
+      
+      <p>Cameras Should Be</p>
+      <MultitextboxComponent stringObjects="filterModel.CamerasShouldBe"/>
+      
+      <p>Cameras Should Not Be</p>
+      <MultitextboxComponent stringObjects="filterModel.CamerasShouldNotBe"/>
+      
+      <p>Extensions</p>
+      <MultitextboxComponent stringObjects="filterModel.Extensions"/>
+      
+      <!-- add 2 binding text for a number-->
+      <div class="form-group">
+            <label for="extensions">Max-Number-Of-Files:</label>
+            <input id="extensions" class="form-control" @bind="filterModel.MaxFiles" />
+      </div>
+      
+      <h3>Enum Dropdown Example</h3>
+      
+      
+      
+      <!-- Create a dropdown bound to the SelectedDestination property -->
+      <InputSelect @bind-Value="filterModel.DestinationModel">
+          @foreach (DestinationsWebEnum destination in Enum.GetValues(typeof(DestinationsWebEnum)))
+          {
+              <option value="@destination.ToString()">@destination.ToString()</option>
+          }
+      </InputSelect>
+      
+      
+      
+      <button class="btn btn-primary" @onclick="RunGetFiles">Get Files Raw</button>
+      <button class="btn btn-primary" @onclick="RunOrdering">OrderPictures</button>
+      
+   
+      
+      <div>
+            <!-- add child component logviewer here -->
+            <LogViewer RawInput="@dataService"/>
+      </div>
+      
+        <div>
+                  <!-- add child component logviewer here -->
+                  <LogViewer RawInput="@presentExtensions"/>
+            </div>
+    
+</div>
+@code {
+      
+      private DestinationsWebEnum selectedDestination = DestinationsWebEnum.BaseLibraryWithoutDate;
+
+      
+      IOrderAndCreateLibraryOfMediaWebService businessLogicService = new OrderAndCreateLibraryOfMediaWebService();
+      string dataService = string.Empty;
+      string presentExtensions = string.Empty;
+      string filterModelAsJson = string.Empty;
+      
+      public List<string> paths = new List<string>();
+            
+            
+      
+        private FilterWebModel filterModel = new FilterWebModel();
+        protected string concatenatedExtensions = string.Empty;
+        
+        // on init
+        protected override void OnInitialized()
+        {
+              
+              
+                    
+        }
+   
+        private void SaveConfiguration()
+        {
+        // Implement your logic to save the configuration here
+        // You can access the filterModel with the entered values
+        }
+
+      private void RunGetFiles()
+      {
+            var result = businessLogicService.GetFilesInPath(filterModel);
+            AddToOutput(string.Join(Environment.NewLine, result));
+            AddPresentExtensions(string.Join(Environment.NewLine, businessLogicService.GetPresentExtensions()));
+      }
+
+      private async Task RunOrdering()
+      {
+            try
+            {
+                  var result = await businessLogicService.OrderRoutine(filterModel);
+            }catch(Exception e)
+            {
+                  AddToOutput(e.Message);
+            }
+
+      
+            //AddToOutput(string.Join(Environment.NewLine, result));
+            //AddPresentExtensions(string.Join(Environment.NewLine, businessLogicService.GetPresentExtensions()));
+      }
+
+
+      public void AddToOutput(string message)
+      {
+            dataService += message + Environment.NewLine;
+      }
+      
+      public void AddPresentExtensions(string message)
+      {
+            presentExtensions += message + Environment.NewLine;
+      }
+      
+      public void Dispose()
+      {
+            // Implement your logic to dispose the component here
+      }
+
+} 

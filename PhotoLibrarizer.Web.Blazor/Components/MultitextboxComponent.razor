@@ -1,0 +1,130 @@
+@page "/multitextbox"
+@using Microsoft.JSInterop
+@using Microsoft.AspNetCore.Razor.TagHelpers
+@inject IJSRuntime JSRuntime
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <input type="text" @bind="currentPath" placeholder="Add a path" />
+            <button @onclick="AddPath">Add</button>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <textarea class="multirow-textbox" @ref="textBoxRef"
+id="yourTextAreaId"
+                      @onmouseup="HandleMouseUp"
+                      @onmousedown="HandleMouseDown"
+                      @onkeydown="HandleKeyDown">@string.Join(Environment.NewLine, stringObjects)</textarea>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <button @onclick="DeleteSelected">Delete Selected</button>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public List<string> stringObjects { get; set; } = new List<string>();
+    //private List<string> paths = new List<string>();
+    private string currentPath = "";
+    private HtmlTargetElementAttribute textBoxRef2;
+    private ElementReference textBoxRef;
+    private HashSet<int> selectedLines = new HashSet<int>();
+    private bool ctrlKeyPressed = false;
+
+    private void AddPath()
+    {
+        if (!string.IsNullOrWhiteSpace(currentPath))
+        {
+            stringObjects.Add(currentPath);
+            currentPath = "";
+            RefreshTextArea();
+        }
+    }
+
+    private void RefreshTextArea()
+    {
+        // Use JavaScript interop to update the textarea content
+        JSRuntime.InvokeVoidAsync("updateTextAreaContent", textBoxRef, string.Join(Environment.NewLine, stringObjects));
+    }
+
+    private async Task HandleMouseUp(EventArgs e)
+    {
+
+        
+        var selectedText = await JSRuntime.InvokeAsync<string>("eval", @"
+            (function() {
+                var textArea = document.getElementById('yourTextAreaId');
+                return textArea ? textArea.value : '';
+            })()");
+
+
+    // Handle line selection with mouse click
+    //var selectedText = textBoxRef.Value.Substring(textBoxRef.Value.IndexOf('\n'));
+    var selectedLinesArray = selectedText.Split('\n').Select((line, index) => new { Line = line, Index = index });
+        
+        selectedLines.Clear();
+        
+        foreach (var item in selectedLinesArray)
+        {
+            if (item.Line.Trim() != "")
+            {
+                if (item.Index != 0) // Skip the first line (empty)
+                {
+                    selectedLines.Add(item.Index - 1);
+                }
+            }
+        }
+    }
+
+    private void HandleKeyDown(KeyboardEventArgs e)
+    {
+        // Detect Ctrl key press for multi-selection
+        ctrlKeyPressed = e.CtrlKey;
+    }
+
+    private void DeleteSelected()
+    {
+        // Delete selected lines
+        /*var lines = textBoxRef.Value.Split('\n').ToList();
+        var remainingLines = lines.Where((line, index) => !selectedLines.Contains(index)).ToList();
+        paths = remainingLines;
+        RefreshTextArea();*/
+    }
+
+    private async Task HandleMouseDown(MouseEventArgs obj)
+    {
+        
+        //var selectedText = await JSRuntime.InvokeAsync<string>("getTextAreaValue", textBoxRef);
+        //var element= await GetElementById("yourTextAreaId");
+        var selectedText = await JSRuntime.InvokeAsync<string>("eval", @"
+            (function() {
+                var textArea = document.getElementById('yourTextAreaId');
+                return textArea ? textArea.value : '';
+            })()");
+        
+        
+        var selectedTextf = textBoxRef;
+        var gh = textBoxRef.Id;
+        var ghhhg = obj;
+        var lbno = ghhhg.ToString();
+
+    }
+    
+    
+    private async Task<dynamic> GetElementById(string id)
+    {
+        return await JSRuntime.InvokeAsync<dynamic>("eval", $"document.getElementById('{id}')");
+    }
+
+
+
+}

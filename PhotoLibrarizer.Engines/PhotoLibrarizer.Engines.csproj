@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net7.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+
+
+    <ItemGroup>
+      <PackageReference Include="Magick.NET-Q8-AnyCPU" Version="13.2.0" />
+      <PackageReference Include="MetadataExtractor" Version="2.8.0" />
+      <PackageReference Include="photo.exif" Version="1.1.16" />
+      <PackageReference Include="SSH.NET" Version="2023.0.1" />
+    </ItemGroup>
+
+
+
+    <ItemGroup>
+      <Folder Include="Configuration\" />
+      <Folder Include="IoEngines\MoveFiles\" />
+      <Folder Include="IoEngines\Renaming\" />
+    </ItemGroup>
+
+</Project>
