@@ -7,11 +7,11 @@ namespace PhotoLibrarizer.Engines.Models
         protected string _FileName;
         protected string _Hash;
         protected FileInfo _GeneralFileInformation;
-        protected DateTime _DateCreation;
+        protected DateTime? _DateCreation;
         // create protectec property for size
         protected long _Size;
 
-        public DateTime DateCreation
+        public DateTime? DateCreation
         {
             get
             {

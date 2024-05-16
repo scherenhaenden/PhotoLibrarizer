@@ -17,7 +17,7 @@ namespace PhotoLibrarizer.Engines.Tests.IntegrationTests
         
             // Arrange seek files
             IFilesSeeker filesSeeker = new FilesSeeker();
-            var files = filesSeeker.GetFilesInPath("/Users/edwardflores/Pictures/Rockatuesilo/04/Trivium", new List<string> {".jpg"}, false);
+            var files = filesSeeker.GetFilesInPath("/Users/edwardflores/Pictures/organized/2023/08/04/converted/Santiano", new List<string> {".jpg"}, false);
         
             // filer files by using only those from today
             /*DateTime today = DateTime.Today;
@@ -30,7 +30,7 @@ namespace PhotoLibrarizer.Engines.Tests.IntegrationTests
                 .ToList();*/
         
        
-            files= files.Where(x=>x.ToLower().Contains("ai")).ToList();
+            //files= files.Where(x=>x.ToLower().Contains("ai")).ToList();
         
             // Act
             foreach (var file in files)
@@ -60,10 +60,20 @@ namespace PhotoLibrarizer.Engines.Tests.IntegrationTests
                 {
                     Directory.CreateDirectory(markedDirectory);
                 }
+
+                try
+                {
+                    // move file to marked directory
+                    var newFilePath = Path.Combine(markedDirectory, Path.GetFileName(newFileName));
+                    File.Move(newFileName, newFilePath);
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                    //throw;
+                }
             
-                // move file to marked directory
-                var newFilePath = Path.Combine(markedDirectory, Path.GetFileName(newFileName));
-                File.Move(newFileName, newFilePath);
+                
             
             
             

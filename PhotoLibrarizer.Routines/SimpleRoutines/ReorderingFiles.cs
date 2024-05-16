@@ -87,7 +87,7 @@ namespace PhotoLibrarizer.Routines.SimpleRoutines
                             // check uf file exists
                             if (File.Exists(fullNewNameOfFileOnlyDateAndSize))
                             {
-                                IFileHasher fileHasher = new FileHasher();
+                                IFileHasher fileHasher = new FileHasherDotnet();
                                 var hashOld = fileHasher.GetMD5ByFilePath(fileModel.FullPathOfFile);
                                 var hashNew = fileHasher.GetMD5ByFilePath(fullNewNameOfFileOnlyDateAndSize);
                     
@@ -115,7 +115,7 @@ namespace PhotoLibrarizer.Routines.SimpleRoutines
                         var fullNewNameOfFileOnlyDateAndSizeWithDirectory = Path.Combine(directoryForPicture, Path.GetFileName(fullNewNameOfFileOnlyDateAndSize));
                         if (File.Exists(fullNewNameOfFileOnlyDateAndSizeWithDirectory))
                         {
-                            IFileHasher fileHasher = new FileHasher();
+                            IFileHasher fileHasher = new FileHasherDotnet();
                             var hashSourceFile = fileHasher.GetMD5ByFilePath(fileModel.FullPathOfFile);
                             var hashExistingFile = fileHasher.GetMD5ByFilePath(fullNewNameOfFileOnlyDateAndSizeWithDirectory);
                     
@@ -158,7 +158,7 @@ namespace PhotoLibrarizer.Routines.SimpleRoutines
 
                                 if (File.Exists(newPathWithHash))
                                 {
-                                    fileHasher = new FileHasher();
+                                    fileHasher = new FileHasherDotnet();
                                     var anotherExistingFile = fileHasher.GetMD5ByFilePath(newPathWithHash);
                                     
                                     if (hashSourceFile==anotherExistingFile)
@@ -339,7 +339,7 @@ namespace PhotoLibrarizer.Routines.SimpleRoutines
             
              // add hash of file to name
             // 6.- if rename fails, try rename with datetime and size and hash
-            IFileHasher fileHasher = new FileHasher();
+            IFileHasher fileHasher = new FileHasherDotnet();
             var hash = fileHasher.GetMD5ByFilePath(fileModel.FullPathOfFile);
             maybeOfficialName=directoryname+"/"+newName+"_"+size+"_"+hash+extension;
 
@@ -386,7 +386,7 @@ namespace PhotoLibrarizer.Routines.SimpleRoutines
             {
                 // add hash of file to name
                 // 6.- if rename fails, try rename with datetime and size and hash
-                IFileHasher fileHasher = new FileHasher();
+                IFileHasher fileHasher = new FileHasherDotnet();
                 var hash = fileHasher.GetMD5ByFilePath(fileModel.FullPathOfFile);
                 maybeOfficialName=directoryname+"/"+newName+"_"+size+"_"+hash+extension;
                   

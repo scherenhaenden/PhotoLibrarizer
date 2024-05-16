@@ -29,15 +29,6 @@ public class FileModelsGetterBySeekerGenerator: IFileModelsGetterBySeekerGenerat
 
 }
 
-
-
-public interface IFileModelsMapper
-{
-    public List<FileModel> MapPaths(List<string> paths);
-    
-}
-
-
 public class FileModelsMapper: IFileModelsMapper
 {
     public List<FileModel> MapPaths(List<string> paths)
