@@ -1,0 +1,24 @@
+﻿services:
+  photolibrarizertestdockerauth:
+    image: photolibrarizertestdockerauth
+    build:
+      context: .
+      dockerfile: PhotoLibrarizerTestDockerAuth/Dockerfile
+
+  webapplication1:
+    image: webapplication1
+    build:
+      context: .
+      dockerfile: WebApplication1/Dockerfile
+
+  webapplication2:
+    image: webapplication2
+    build:
+      context: .
+      dockerfile: WebApplication2/Dockerfile
+
+  photolibrarizerwebapi:
+    image: photolibrarizerwebapi
+    build:
+      context: .
+      dockerfile: PhotoLibrarizerWebApi/Dockerfile
