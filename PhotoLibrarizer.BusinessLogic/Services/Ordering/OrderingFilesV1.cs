@@ -1,6 +1,7 @@
 using System.Diagnostics;
 using System.Globalization;
 using PhotoLibrarizer.BusinessLogic.Models;
+using PhotoLibrarizer.BusinessLogic.Services.SSHServices;
 using PhotoLibrarizer.Engines.Hashing;
 using PhotoLibrarizer.Engines.IoEngines;
 using PhotoLibrarizer.Engines.IoEngines.FilesModelsMapper;
@@ -286,55 +287,20 @@ public class OrderingFilesV1: IOrderingFilesV1
         {
             var  possibleRemoveNameOfFile = ReplacementForSshPathVolumnes(fileModel.FullPathOfFile);
         
-            string commandi = $"exiftool \"{fileModel.CorrectBashFullFileName}\"";
-            var hashi= _sshServices.ExecuteCommand(commandi, out string error);
-            if (string.IsNullOrEmpty(error))
+            IBashCommandsForImages bashCommandsForImages = new BashCommandsForImages(_sshServices);
+            var dateOfPicture =bashCommandsForImages.GetImageDate(possibleRemoveNameOfFile, out string error_);
+            
+            if(dateOfPicture is not null)
             {
-                //return hashi?.Split(" ")[0].ToUpper() ?? string.Empty;
-                var lines = hashi.Split("\n");
-
-                try
-                { 
-                
-            
-                    var createDateUnClean = lines.FirstOrDefault(x => x.Contains("Create Date"));
-                
-                    var createDate = createDateUnClean.Split(':', 2)[1].Trim();
-            
-                    string format = "yyyy:MM:dd HH:mm:ss";
-                    DateTime dtObject = DateTime.ParseExact(createDate,format,CultureInfo.InvariantCulture);
-                    return dtObject;
-                
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("error on:" +fileModel.FullPathOfFile);
-                    Console.WriteLine("error on:" +e.Message);
-                }
-            
-                try
-                {
-                    var createDateUnClean = lines.FirstOrDefault(x => x.Contains("Date/Time Original"));
-                
-                    var createDate = createDateUnClean.Split(':', 2)[1].Trim();
-            
-                    string format = "yyyy:MM:dd HH:mm:ss";
-                    DateTime dtObject = DateTime.ParseExact(createDate,format,CultureInfo.InvariantCulture);
-                    return dtObject;
-                
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("error on:" +fileModel.FullPathOfFile);
-                    Console.WriteLine("error on:" +e.Message);
-                }
-            
+                return dateOfPicture;
             }
+            
+   
         }
         catch (Exception e)
         {
-            Console.WriteLine("error on:" +fileModel.FullPathOfFile);
-            Console.WriteLine("error on:" +e.Message);
+            Console.WriteLine("error on: no date on" +fileModel.FullPathOfFile);
+            Console.WriteLine("error on: no date on" +e.Message);
         }
 
 
@@ -588,7 +554,7 @@ public class OrderingFilesV1: IOrderingFilesV1
                 return false;
             }
                 
-            if(counter%30 ==0) // for testing
+            if(counter%4 ==0) // for testing
             {
                 ResolveTheList(needToBeCopied);
                 needToBeCopied.Clear();
@@ -709,11 +675,13 @@ public class OrderingFilesV1: IOrderingFilesV1
     public string ReplacementForSshPath(string path)
     {
         return path.Replace("Volumes", "volume1").Replace(" ", "\\ ");
+        //return path;
     }
     
     public string ReplacementForSshPathVolumnes(string path)
     {
         return path.Replace("/Volumes", "/volume1");
+        //return path;
     }
     
     public void CopyFile(FileModel fileModel, string destinationPath)
