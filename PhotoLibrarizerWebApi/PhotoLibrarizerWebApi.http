@@ -1,0 +1,6 @@
+@PhotoLibrarizerWebApi_HostAddress = http://localhost:5080
+
+GET {{PhotoLibrarizerWebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

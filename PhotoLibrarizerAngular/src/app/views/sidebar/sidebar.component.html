@@ -1,0 +1,23 @@
+<aside class="menu sidebar">
+  <p class="menu-label">
+    PhotoLibrarizer
+  </p>
+  <ul class="menu-list">
+    <ng-container *ngFor="let item of menuItems; let i = index">
+      <li>
+        <a *ngIf="item.isActive" (click)="toggleMenuItem(i)">
+          <i [class]="item.icon"></i> {{ item.label }}
+        </a>
+        <ul *ngIf="item.children && item.isActive">
+          <ng-container *ngFor="let child of item.children">
+            <li>
+              <a *ngIf="child.isActive">
+                <i [class]="child.icon"></i> {{ child.label }}
+              </a>
+            </li>
+          </ng-container>
+        </ul>
+      </li>
+    </ng-container>
+  </ul>
+</aside>
