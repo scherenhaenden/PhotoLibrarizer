@@ -54,12 +54,12 @@ namespace PhotoLibrarizerCore.Tests.Services.FilesManagement
 
         // Act
         _fileModel.FullPathOfFile = fullPath;
-
-        // Assert
-        Assert.AreEqual(fullPath, _fileModel.FullPathOfFile);
-        Assert.AreEqual(_fileName1, _fileModel.FileName);
-        Assert.AreEqual("C:\\path\\to", _fileModel.PathOfFile);
-        Assert.IsNotNull(_fileModel.GeneralFileInformation);
+        
+        // Assert in new way
+        Assert.That(fullPath, Is.EqualTo(_fileModel.FullPathOfFile));
+        Assert.That(_fileName1, Is.EqualTo(_fileModel.FileName));
+        Assert.That("C:\\path\\to", Is.EqualTo(_fileModel.PathOfFile));
+        Assert.That(_fileModel.GeneralFileInformation, Is.Not.Null);
     }
 
         [Test]
@@ -73,7 +73,8 @@ namespace PhotoLibrarizerCore.Tests.Services.FilesManagement
 
         // Assert
         DateTime expectedDate = File.GetCreationTime(fullPath);
-        Assert.AreEqual(expectedDate, _fileModel.GeneralFileInformation.CreationTime);
+        // new way
+        Assert.That(expectedDate, Is.EqualTo(_fileModel.GeneralFileInformation.CreationTime));
     }
 
         [Test]
@@ -84,9 +85,9 @@ namespace PhotoLibrarizerCore.Tests.Services.FilesManagement
 
         // Act
         _fileModel.DateCreation = date;
-
-        // Assert
-        Assert.AreEqual(date, _fileModel.DateCreation);
+        
+        // new way
+        Assert.That(date, Is.EqualTo(_fileModel.DateCreation));
     }
 
         [Test]
@@ -97,9 +98,8 @@ namespace PhotoLibrarizerCore.Tests.Services.FilesManagement
 
         // Act
         _fileModel.Hash = hash;
-
-        // Assert
-        Assert.AreEqual(hash, _fileModel.Hash);
+        // new way
+        Assert.That(hash, Is.EqualTo(_fileModel.Hash));
     }
     }
 }

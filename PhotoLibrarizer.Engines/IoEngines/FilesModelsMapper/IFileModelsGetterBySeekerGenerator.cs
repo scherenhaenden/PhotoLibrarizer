@@ -1,3 +1,4 @@
+using PhotoLibrarizer.Engines.IoEngines.Seekers;
 using PhotoLibrarizer.Engines.Models;
 
 namespace PhotoLibrarizer.Engines.IoEngines.FilesModelsMapper;

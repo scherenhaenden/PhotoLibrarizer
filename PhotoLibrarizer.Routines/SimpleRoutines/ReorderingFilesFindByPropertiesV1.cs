@@ -2,6 +2,7 @@ using PhotoLibrarizer.Engines.AsyncTaskManagement;
 using PhotoLibrarizer.Engines.Filters.Models;
 using PhotoLibrarizer.Engines.Hashing;
 using PhotoLibrarizer.Engines.IoEngines;
+using PhotoLibrarizer.Engines.IoEngines.Seekers;
 using PhotoLibrarizer.Engines.Metadata;
 using PhotoLibrarizer.Engines.Models;
 using PhotoLibrarizer.Engines.Models.DateModels;

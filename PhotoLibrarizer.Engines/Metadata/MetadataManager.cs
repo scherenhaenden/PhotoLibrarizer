@@ -78,7 +78,16 @@ namespace PhotoLibrarizer.Engines.Metadata
 
             if (_directories == null || _directories.Count == 0)
             {
-                _directories = ImageMetadataReader.ReadMetadata(_filePath).ToList();
+                try
+                {
+                    _directories = ImageMetadataReader.ReadMetadata(_filePath).ToList();
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("error on file:" + _filePath);
+                    return "unknown";
+                }
+
             }
 
             return GetValueOfDescriptionByType(_directories, tagType) ?? "unknown";

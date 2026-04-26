@@ -16,6 +16,7 @@
     </ItemGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\PhotoLibrarizer.BusinessLogic\PhotoLibrarizer.BusinessLogic.csproj" />
       <ProjectReference Include="..\PhotoLibrarizer.Engines\PhotoLibrarizer.Engines.csproj" />
       <ProjectReference Include="..\PhotoLibrarizer.Routines\PhotoLibrarizer.Routines.csproj" />
     </ItemGroup>
@@ -23,6 +24,7 @@
 
     <ItemGroup>
       <PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />
+      <PackageReference Include="System.IO.MemoryMappedFiles" Version="4.3.0" />
     </ItemGroup>
 
 </Project>

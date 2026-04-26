@@ -1,4 +1,5 @@
 using PhotoLibrarizer.Engines.Resizing;
+using PhotoLibrarizer.Engines.WaterMarking;
 
 namespace PhotoLibrarizer.Engines.Tests.NUnits.Resizing
 {
@@ -33,7 +34,7 @@ namespace PhotoLibrarizer.Engines.Tests.NUnits.Resizing
         {
             // Arrange
             // get files from directory
-            var files = Directory.GetFiles("/Users/edwardflores/Pictures/organized/2023/08/03/converted/Uriah Heep/", "*marked*.jpg");
+            var files = Directory.GetFiles("/Volumes/Extern/created_on_linux/Photos/2024.08.02/Topaz", "*.jpg");
         
             string watermarkImagePath = "/Users/edwardflores/Pictures/f60642b79ba667ed85798d85d7bc891c.png";
         
@@ -62,6 +63,8 @@ namespace PhotoLibrarizer.Engines.Tests.NUnits.Resizing
             
                 // Act
                 _resizingImages.TryConvertImage(file,1200, 1200, newFilePath);
+                
+                new WaterMarker().AddWatermark(newFilePath, newFilePath, watermarkImagePath);
                 Assert.That(File.Exists(newFilePath), Is.True, "Watermarked image file should be created.");
 
             

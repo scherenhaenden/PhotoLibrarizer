@@ -1,6 +1,7 @@
 using PhotoLibrarizer.BusinessLogic.Models;
 using PhotoLibrarizer.BusinessLogic.Services.IOService;
 using PhotoLibrarizer.Engines.IoEngines;
+using PhotoLibrarizer.Engines.IoEngines.Seekers;
 using PhotoLibrarizer.Engines.Metadata;
 using PhotoLibrarizer.Engines.Models;
 

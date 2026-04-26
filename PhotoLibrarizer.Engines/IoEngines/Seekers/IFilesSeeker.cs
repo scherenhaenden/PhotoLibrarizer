@@ -1,4 +1,4 @@
-namespace PhotoLibrarizer.Engines.IoEngines
+namespace PhotoLibrarizer.Engines.IoEngines.Seekers
 {
     [Obsolete("Use IFilesSeekerV2 instead")]
     public interface IFilesSeeker

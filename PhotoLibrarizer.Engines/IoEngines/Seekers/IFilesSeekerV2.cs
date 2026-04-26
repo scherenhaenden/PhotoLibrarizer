@@ -1,4 +1,4 @@
-namespace PhotoLibrarizer.Engines.IoEngines
+namespace PhotoLibrarizer.Engines.IoEngines.Seekers
 {
     public interface IFilesSeekerV2
     {

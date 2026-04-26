@@ -23,9 +23,31 @@ public class BashCommandsForImages: IBashCommandsForImages
     
     public string? RunExifTool(string imagePath, out string error)
     {
-        var command = $"exiftool {imagePath}";
+        var command = $"exiftool '{imagePath}'";
         var result = RunCommand(command, out error);
         return result;
+    }
+    private DateTime? MapStringDateToDateTime(string createDateUnClean)
+    {
+        try
+        {
+            var createDate = createDateUnClean.Split(':', 2)[1].Trim();
+            string format = "yyyy:MM:dd HH:mm:ss";
+            if (createDate.Contains("+"))
+            {
+                format = "yyyy:MM:dd HH:mm:sszzz"; // Add zzz for the timezone offset
+
+            }
+            
+            DateTime dtObject = DateTime.ParseExact(createDate,format,CultureInfo.InvariantCulture);
+            return dtObject;
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return null;
+        }
+       
     }
 
     public DateTime? GetImageDate(string imagePath, out string error)
@@ -38,16 +60,32 @@ public class BashCommandsForImages: IBashCommandsForImages
 
             try
             { 
-                
             
                 var createDateUnClean = lines.FirstOrDefault(x => x.Contains("Create Date"));
+
+                if (!string.IsNullOrEmpty(createDateUnClean))
+                {
+                    var value = MapStringDateToDateTime(createDateUnClean);
+                    if (value != null)
+                    {
+                        return value;
+                    }
+                        
+                }
                 
-                var createDate = createDateUnClean.Split(':', 2)[1].Trim();
-            
-                string format = "yyyy:MM:dd HH:mm:ss";
+                var fileModificationDateUnClean = lines.FirstOrDefault(x => x.Contains("File Modification Date/Time"));
                 
-                DateTime dtObject = DateTime.ParseExact(createDate,format,CultureInfo.InvariantCulture);
-                return dtObject;
+                
+                if (!string.IsNullOrEmpty(fileModificationDateUnClean))
+                {
+                    var value = MapStringDateToDateTime(fileModificationDateUnClean);
+                    if (value != null)
+                    {
+                        return value;
+                    }
+                        
+                }
+               
                 
             }
             catch (Exception e)

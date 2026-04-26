@@ -1,4 +1,5 @@
 using PhotoLibrarizer.Engines.IoEngines;
+using PhotoLibrarizer.Engines.IoEngines.Seekers;
 
 namespace PhotoLibrarizer.Engines.Tests.NUnits.IoEngines
 {
@@ -77,9 +78,9 @@ namespace PhotoLibrarizer.Engines.Tests.NUnits.IoEngines
 
         // Act
         List<string> files = _filesSeeker.GetFilesInPath(path);
-
-        // Assert
-        Assert.IsNotNull(files);
+        
+        // new way to assert
+        Assert.That(files, Is.Not.Null);
         // Add more assertions as needed
     }
 
@@ -93,8 +94,8 @@ namespace PhotoLibrarizer.Engines.Tests.NUnits.IoEngines
         // Act
         List<string> files = _filesSeeker.GetFilesInPath(path, extensions, false);
 
-        // Assert
-        Assert.IsNotNull(files);
+        // new way to assert
+        Assert.That(files, Is.Not.Null);
         // Add more assertions as needed
     }
         [Test]
@@ -107,8 +108,8 @@ namespace PhotoLibrarizer.Engines.Tests.NUnits.IoEngines
         // Act
         List<string> files = _filesSeeker.GetFilesInPath(path, extensions, true);
 
-        // Assert
-        Assert.IsNotNull(files);
+        // new way to assert
+        Assert.That(files, Is.Not.Null);
         // Add more assertions as needed
     }
 
@@ -121,9 +122,9 @@ namespace PhotoLibrarizer.Engines.Tests.NUnits.IoEngines
 
         // Act
         List<string> files = _filesSeeker.GetFilesInPath(path, extensions, true);
-
-        // Assert
-        Assert.IsEmpty(files);
+        
+        // new way to assert
+        Assert.That(files, Is.Empty);
         // Add more assertions as needed
     }
     }

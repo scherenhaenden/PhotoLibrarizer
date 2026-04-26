@@ -31,8 +31,8 @@ namespace PhotoLibrarizerCore.Tests.Services.NamingPictures
         // Act
         string result = picturesNamerService.GenerateName(model);
 
-        // Assert
-        Assert.AreEqual("2023_05_01_10_30_00_size_1024_hashtag_nature", result);
+        // Assert in new way
+        Assert.That(result, Is.EqualTo("2023_05_01_10_30_00_size_1024_hashtag_nature"));
     }
 
         [Test]

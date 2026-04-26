@@ -1,5 +1,6 @@
 using PhotoLibrarizer.Engines.Filters.Models;
 using PhotoLibrarizer.Engines.IoEngines;
+using PhotoLibrarizer.Engines.IoEngines.Seekers;
 using PhotoLibrarizer.Routines.SimpleRoutines;
 
 namespace PhotoLibrarizer.Routines.Tests.SimpleRoutines

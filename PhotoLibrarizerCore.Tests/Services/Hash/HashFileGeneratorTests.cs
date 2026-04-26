@@ -60,9 +60,9 @@ namespace PhotoLibrarizerCore.Tests.Services.Hash
 
                     // Act
                     string result = hashFileGenerator.GetHashByFilePath(filePath);
-
-                    // Assert
-                    Assert.AreEqual(expectedHash, result);
+                    
+                    // Assert in new way
+                    Assert.That(result, Is.EqualTo(expectedHash));
                 }
             }
         }

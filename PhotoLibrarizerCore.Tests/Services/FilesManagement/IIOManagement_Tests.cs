@@ -50,11 +50,12 @@ namespace PhotoLibrarizerCore.Tests.Services.FilesManagement
             var filesWithSubDirectories = ioManagement.GetFiles(_testFolderPath, true);
 
             // Assert
-            Assert.AreEqual(2, files.Count);
-            Assert.AreEqual(3, filesWithSubDirectories.Count);
-            Assert.Contains(Path.Combine(_testFolderPath, "file1.txt"), files);
-            Assert.Contains(Path.Combine(_testFolderPath, "file2.txt"), files);
-            Assert.Contains(Path.Combine(_testFolderPath, "subfolder", "file3.txt"), filesWithSubDirectories);
+            Assert.That(files.Count, Is.EqualTo(2));
+            Assert.That(filesWithSubDirectories.Count, Is.EqualTo(3));
+            Assert.That(files, Does.Contain(Path.Combine(_testFolderPath, "file1.txt")));
+            Assert.That(files, Does.Contain(Path.Combine(_testFolderPath, "file2.txt")));
+            Assert.That(filesWithSubDirectories, Does.Contain(Path.Combine(_testFolderPath, "subfolder", "file3.txt")));
+
         }
 
         [Test]
@@ -68,10 +69,11 @@ namespace PhotoLibrarizerCore.Tests.Services.FilesManagement
             var files = ioManagement.GetFiles(_testFolderPath, extensions, recursive: true);
 
             // Assert
-            Assert.AreEqual(3, files.Count);
-            Assert.Contains(Path.Combine(_testFolderPath, "file1.txt"), files);
-            Assert.Contains(Path.Combine(_testFolderPath, "file2.txt"), files);
-            Assert.Contains(Path.Combine(_testFolderPath, "subfolder", "file3.txt"), files);
+            Assert.That(files.Count, Is.EqualTo(3));
+            Assert.That(files, Does.Contain(Path.Combine(_testFolderPath, "file1.txt")));
+            Assert.That(files, Does.Contain(Path.Combine(_testFolderPath, "file2.txt")));
+            Assert.That(files, Does.Contain(Path.Combine(_testFolderPath, "subfolder", "file3.txt")));
+
         }
     }
 }

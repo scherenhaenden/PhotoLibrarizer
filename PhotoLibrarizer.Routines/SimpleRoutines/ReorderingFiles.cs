@@ -2,6 +2,7 @@ using PhotoLibrarizer.Engines.AsyncTaskManagement;
 using PhotoLibrarizer.Engines.Filters.Models;
 using PhotoLibrarizer.Engines.Hashing;
 using PhotoLibrarizer.Engines.IoEngines;
+using PhotoLibrarizer.Engines.IoEngines.Seekers;
 using PhotoLibrarizer.Engines.Metadata;
 using PhotoLibrarizer.Engines.Models;
 using PhotoLibrarizer.Engines.Models.DateModels;
@@ -430,16 +431,16 @@ namespace PhotoLibrarizer.Routines.SimpleRoutines
         return cameraExistsV1;
     }
 
-        private FileModel LoadMetaData(FileModel fileModel)
+    private FileModel LoadMetaData(FileModel fileModel)
     {
         IMetadataManager metadataManager = new MetadataManager(fileModel.FullPathOfFile);
         fileModel.Directories = metadataManager.Directories;
         return fileModel;
     }
     
-        ITaskQueueManager taskQueueManager = new TaskQueueManager(maxConcurrentTasks: 3);
+    ITaskQueueManager taskQueueManager = new TaskQueueManager(maxConcurrentTasks: 3);
 
-        public async Task DoByFileModelAsync(FilterModel filterModel)
+    public async Task DoByFileModelAsync(FilterModel filterModel)
     {
         // 1.- get files in path
         

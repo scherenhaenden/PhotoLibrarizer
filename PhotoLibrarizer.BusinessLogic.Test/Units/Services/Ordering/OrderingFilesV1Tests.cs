@@ -2,9 +2,8 @@ using PhotoLibrarizer.BusinessLogic.Models;
 using PhotoLibrarizer.BusinessLogic.Models.DirectoriesNaming;
 using PhotoLibrarizer.BusinessLogic.Models.FilesNaming;
 using PhotoLibrarizer.BusinessLogic.Services.Ordering;
-using PhotoLibrarizer.Engines.Filters.Models;
 
-namespace PhotoLibrarizer.BusinessLogic.Test.Services.Ordering;
+namespace PhotoLibrarizer.BusinessLogic.Test.Units.Services.Ordering;
 
 public class OrderingFilesV1Tests
 {
@@ -18,7 +17,6 @@ public class OrderingFilesV1Tests
         
         var destinationModel = new DestinationBusinessLogicModel();
         
-        
         destinationModel.BasePath = "/Users/edwardflores/Pictures/test";
         destinationModel.Destination = DestinationsBusinessLogicEnum.BaseLibraryWithDate;
         
@@ -26,12 +24,10 @@ public class OrderingFilesV1Tests
         // for files  YYYY/MM/DD/HH/MM/SS/MMM/Size/Hash
         
         //I//DestinationPathModel destinationPathModel = new DestinationPathModelCustomPattern("/yyyy/MM/DD");
-
-
+        
         const string directoryPattern = "/yyyy/MM/dd";
         
         //IDestinationPathBusinessLogicModel destinationPathCustomPatternBusinessLogicModel = new DestinationPathCustomPatternBusinessLogicModel(directoryPattern);
-        
         
         IDestinationPathBusinessLogicModel destinationPathCustomPatternBusinessLogicModel = new DestinationPathCustomPatternBusinessLogicModel(null);
         
@@ -114,9 +110,29 @@ public class OrderingFilesV1Tests
         //filterBusinessLogicModel.PathsForSourceFiles.Add("/Users/edwardflores/Pictures/test");
         //filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/_ForGalleryRightAhead");
         
-        ///Volumes/Edward/_ForGalleryRightAhead/NIKON Z 6/2023
-        ///
-        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead");
+        // /Volumes/Edward/_ForGalleryRightAhead/NIKON Z 6/2023
+        
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead/NIKON D4S");
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead/2024");
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead/KODAK DX7630 ZOOM DIGITAL CAMERA");
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead/Nexus 4");
+        
+        //filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Users/edwardflores/Pictures/organized/2023/08/01");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Users/edwardflores/Pictures/organized/2023/08/02");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Users/edwardflores/Pictures/organized/2023/08/03");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Users/edwardflores/Pictures/Photos/DCIM/131ND750");
+        // /Volumes/TRANSCEND/DCIM/102NCZ_6
+        
+        //filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead/Photos/2024.08.01");
+        //filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead/2024");
+        /*filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead/Photos/2024.08.01");
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead/Photos/2024.08.02");
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead/NIKON Z 6");
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead/2023");
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead/C6903");*/
+        
+        
+        
         //filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead/NIKON Z 6/2022");
         //filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead/NIKON Z 6/2021");
         //filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/_ForGalleryRightAhead/NIKON Z 6/2020");
@@ -192,7 +208,7 @@ public class OrderingFilesV1Tests
         
         
         
-        filterBusinessLogicModel.MaxFiles = 10000;
+        filterBusinessLogicModel.MaxFiles = 733;
         filterBusinessLogicModel.Extensions = new List<string>() {".jpg", ".nef", ".dng"};
         
         
@@ -209,8 +225,8 @@ public class OrderingFilesV1Tests
     {
         FilterBusinessLogicModel filterBusinessLogicModel = new FilterBusinessLogicModel();
         
-        //filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Users/edwardflores/Pictures/Kamera Uploads");
-        ///Volumes/Edward/GalleryOld/2019/08
+        // filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Users/edwardflores/Pictures/Kamera Uploads");
+        // Volumes/Edward/GalleryOld/2019/08
         // get all the direct subdirectories of path
         /*var directories = Directory.GetDirectories(@"/Volumes/Edward/Raws/Fotos_new/2016").ToList();
         
@@ -223,10 +239,18 @@ public class OrderingFilesV1Tests
             filterBusinessLogicModel.PathsForSourceFiles.Add(directory);
         }*/
         
-        
-        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/Raws/Fotos");
-        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/Raws/Fotos_new/2016");
         filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/GalleryOld/2019/08");
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/Swap2");
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/Raws/PicturesPublic/2014");
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/Raws/PicturesPublic/2013");
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/Raws/PicturesPublic/2015");
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/Raws/BackUpPhone");
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/Raws/new");
+        /*filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/Raws/Fotos_new/2016");
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/GalleryOld/2019/08");
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/GalleryOld2");
+        filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/130ND750");*/
+        //filterBusinessLogicModel.PathsForSourceFiles.Add(@"/Volumes/Edward/AAUseThisOne");
         
         
         /*filterBusinessLogicModel.PathsForSourceFiles.Add("/Volumes/Edward/Swap");
@@ -296,7 +320,7 @@ public class OrderingFilesV1Tests
         var destinationModel = new DestinationBusinessLogicModel();
         
         destinationModel.BasePath = "/Volumes/Edward/ByCameras";
-        ///volume1/Edward/ByCameras
+        // /volume1/Edward/ByCameras
         destinationModel.Destination = DestinationsBusinessLogicEnum.BaseLibraryWithDate;
         
         IDestinationPathBusinessLogicModel destinationPathCustomPatternBusinessLogicModel = new DestinationPathCustomPatternBusinessLogicModel(null);
@@ -362,8 +386,8 @@ public class OrderingFilesV1Tests
         
         
         
-        filterBusinessLogicModel.MaxFiles = 150;
-        filterBusinessLogicModel.Extensions = new List<string>() {".jpg", ".nef", ".dng"};
+        filterBusinessLogicModel.MaxFiles = 500;
+        filterBusinessLogicModel.Extensions = new List<string>() {".jpg", ".nef", ".dng", ".JPG"};
         
         
         IOrderingFilesV1 orderingFilesV1 = new OrderingFilesV1();

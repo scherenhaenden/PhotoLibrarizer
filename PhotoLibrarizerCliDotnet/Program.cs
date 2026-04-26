@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-
+/*
 using PhotoLibrarizer.Engines.IoEngines;
 using PhotoLibrarizer.Routines.SimpleRoutines;
 
@@ -17,4 +17,13 @@ var result =reorderingFiles.DoRenameFilesAsync_SimpleDraft("Users/edwardflores/P
 
 //var result =reorderingFiles.DoRenameFilesAsync_SimpleDraft("/Volumes/Edward/Gallery/2021/09/14", true);
 result.Wait();
-Console.WriteLine("Hello, World!");
+Console.WriteLine("Hello, World!");*/
+
+using PhotoLibrarizerCliDotnet.Special;
+
+/*RealDirectory realDirectory = new RealDirectory();
+await realDirectory.RunAsync();*/
+
+
+ByCameraPreDone byCameraPreDone = new ByCameraPreDone();
+await byCameraPreDone.RunAync();

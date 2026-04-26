@@ -64,8 +64,9 @@ namespace PhotoLibrarizer.Engines.Tests.Implementations.Metadata;
             var creationDate = metadataManager.GetDateOfMediaCreation();
 
             var result = metadataManager.GetDateOfMediaCreation();
-
-            Assert.IsNotNull(result);
+            
+            // new way of assert
+            Assert.That(result, Is.Not.Null);
         }
         
         

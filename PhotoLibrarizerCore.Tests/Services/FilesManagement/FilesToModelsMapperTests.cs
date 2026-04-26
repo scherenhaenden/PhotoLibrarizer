@@ -42,16 +42,20 @@ namespace PhotoLibrarizerCore.Tests.Services.FilesManagement
 
             // Act
             List<FileModel> result = _filesToModelsMapper.PathsToModels(files);
-
-            // Assert
-            Assert.NotNull(result);
-            Assert.IsInstanceOf<List<FileModel>>(result);
-            Assert.AreEqual(files.Length, result.Count);
+            
+            //new way
+            Assert.That(result, Is.Not.Null);
+            //new way
+            Assert.That(result, Is.InstanceOf<List<FileModel>>());
+            //new way
+            Assert.That(files.Length, Is.EqualTo(result.Count));
+            
 
             // Additional assertions to check individual file properties
             for (int i = 0; i < files.Length; i++)
             {
-                Assert.AreEqual(files[i], result[i].FullPathOfFile);
+                // new way
+                Assert.That(files[i], Is.EqualTo(result[i].FullPathOfFile));
             }
         }
     
@@ -71,23 +75,30 @@ namespace PhotoLibrarizerCore.Tests.Services.FilesManagement
     
             // Act
             //List<FileModel> result = _filesToModelsMapper.PathsToModels(files);
-
-            // Assert
-            Assert.NotNull(files);
-            Assert.NotNull(results);
+            
+            // new way
+            Assert.That(files, Is.Not.Null);
+            // new way
+            Assert.That(results, Is.Not.Null);
     
-            Assert.IsInstanceOf<List<FileModel>>(results);
-            Assert.AreEqual(files.Count, results.Count);
+            // new way
+            Assert.That(files, Is.InstanceOf<List<string>>());
+            // new way
+            Assert.That(files.Count, Is.EqualTo(results.Count));
+            
     
             // Additional assertions to check individual file properties
             foreach (var fileModel in results)
             {
                 var fileName = Path.GetFileName(fileModel.FullPathOfFile);
-                Assert.AreEqual(fileName, fileModel.FileName);
+                // new way
+                Assert.That(fileName, Is.EqualTo(fileModel.FileName));
 
                 // Check if the DateCreation is not older than 24 hours (1 days)
                 var isDateValid = fileModel.DateCreation > DateTime.Now.AddHours(-24);
-                Assert.IsTrue(isDateValid, "Date is older than 1 days");
+                // new way for Assert.IsTrue(isDateValid, "Date is older than 1 days");
+                Assert.That(isDateValid, Is.True, "Date is older than 1 days");
+                
             }    
         }
 

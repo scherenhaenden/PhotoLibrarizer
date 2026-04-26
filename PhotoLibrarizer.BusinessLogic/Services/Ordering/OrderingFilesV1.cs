@@ -1,10 +1,10 @@
 using System.Diagnostics;
-using System.Globalization;
 using PhotoLibrarizer.BusinessLogic.Models;
 using PhotoLibrarizer.BusinessLogic.Services.SSHServices;
 using PhotoLibrarizer.Engines.Hashing;
 using PhotoLibrarizer.Engines.IoEngines;
 using PhotoLibrarizer.Engines.IoEngines.FilesModelsMapper;
+using PhotoLibrarizer.Engines.IoEngines.Seekers;
 using PhotoLibrarizer.Engines.Metadata;
 using PhotoLibrarizer.Engines.Models;
 using PhotoLibrarizer.Engines.SSH;
@@ -37,6 +37,7 @@ public class OrderingFilesV1: IOrderingFilesV1
             //_filesSeekerV2.GetSubDirectories(filterBusinessLogicModel.PathsForSourceFiles, false);
             
             var listOfThreads = new List<Thread>();
+            //var listOfTasks = new List<Task>();
             
         
         
@@ -52,8 +53,11 @@ public class OrderingFilesV1: IOrderingFilesV1
             
             ;
             //listOfThreads.Add(new Thread(() => Task.Run(async () => await OrderFiles(filter, useSsh))));
+            //var task = OrderFiles(filter, useSsh);
+            //listOfTasks.Add(task);
+            //Task.Run(async () => await OrderFiles(filter, useSsh));
             listOfThreads.Add(new Thread(()  => OrderFiles(filter, useSsh).Wait()));
-            
+   
             
             //listOfTasks.Add(OrderFiles(filter, useSsh));
             //OrderFiles(filter, useSsh);
@@ -69,18 +73,21 @@ public class OrderingFilesV1: IOrderingFilesV1
         listOfThreads.ForEach(x => x.Start());
         //listOfThreads.ForEach(x => x.Join());
         
-        // Wait for threads to finish
         while (listOfThreads.Any(t => t.IsAlive)) 
         {
             Thread.Sleep(800); // Avoid a busy waiting loop
         }
-        //  var gh = listOfThreads.Where(x => x.IsAlive).ToList();
         
+        // Wait for threads to finish
+        /*while (listOfThreads.Any(t => t.IsAlive)) 
+        {
+            Thread.Sleep(800); // Avoid a busy waiting loop
+        }*/
+        //  var gh = listOfThreads.Where(x => x.IsAlive).ToList();
+        //await Task.WhenAll(listOfThreads);
+        //Task.WhenAll(listOfTasks);
         
         return Task.CompletedTask;
-        
-        
-        //throw new NotImplementedException();
     }
     
     
@@ -126,16 +133,16 @@ public class OrderingFilesV1: IOrderingFilesV1
                         }
                         catch (Exception e)
                         {
-                            Console.WriteLine("error on:" +directory);
-                            Console.WriteLine("error on:" +e.Message);
+                            Console.WriteLine("error on DeleteEmptySubdirectories-1:" +directory);
+                            Console.WriteLine("error on DeleteEmptySubdirectories-2:" +e.Message);
                         }
                 
                     }
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine("error on:" +directory);
-                    Console.WriteLine("error on:" +e.Message);
+                    Console.WriteLine("error on DeleteEmptySubdirectories-3:" +directory);
+                    Console.WriteLine("error on DeleteEmptySubdirectories-4:" +e.Message);
                 }
             }
            
@@ -214,38 +221,50 @@ public class OrderingFilesV1: IOrderingFilesV1
     
     private static void WriteNoDate(string fileWithDate) 
     {
-              
-        if(File.Exists(fileNameNoDateAndPath))
-        {
-            //File.Create(fileNameNoDate);
-            // fine out how many lines does the file have
-            var reader = new StreamReader(fileNameNoDateAndPath);
-            var lines = File.ReadAllLines(fileNameNoDateAndPath);
-            reader.Close();
-            if(lines.Length > 10000000)
-            {
-                // delete from list all the paths found in the file
-                //files = files.Where(x => !lines.Contains(x)).ToList();
-                //File.Delete(fileNameNoDate);
-                
-                var directory = Path.GetDirectoryName(fileNameNoDateAndPath);
-                
-                
-                var newFileName = "nodate" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".txt";
-                var newfileNameNoDateAndPath = Path.Combine(directory, newFileName);
-                File.Move(fileNameNoDateAndPath, newfileNameNoDateAndPath);
-            }
-                    
-        }
-
-      
         lock (fileNameNoDateAndPath)
         {
+            
             if (!File.Exists(fileNameNoDateAndPath))
             {
                 File.Create(fileNameNoDateAndPath);
             }
-            File.AppendAllText(fileNameNoDateAndPath, fileWithDate + Environment.NewLine);
+            
+            using ( var reader = new StreamReader(fileNameNoDateAndPath))
+            {
+                if(File.Exists(fileNameNoDateAndPath))
+                {
+                    //File.Create(fileNameNoDate);
+                    // fine out how many lines does the file have
+                    //var reader = new StreamReader(fileNameNoDateAndPath);
+                    var lines = File.ReadAllLines(fileNameNoDateAndPath);
+                    reader.Close();
+                    if(lines.Length > 10000000)
+                    {
+                        // delete from list all the paths found in the file
+                        //files = files.Where(x => !lines.Contains(x)).ToList();
+                        //File.Delete(fileNameNoDate);
+                
+                        var directory = Path.GetDirectoryName(fileNameNoDateAndPath);
+                
+                
+                        var newFileName = "nodate" + DateTime.Now.ToString("yyyyMMddHHmmss") + ".txt";
+                        var newfileNameNoDateAndPath = Path.Combine(directory, newFileName);
+                        File.Move(fileNameNoDateAndPath, newfileNameNoDateAndPath);
+                    }
+                    
+                }
+            
+          
+                if (!File.Exists(fileNameNoDateAndPath))
+                {
+                    File.Create(fileNameNoDateAndPath);
+                }
+                File.AppendAllText(fileNameNoDateAndPath, fileWithDate + Environment.NewLine);
+            }
+        
+        
+              
+           
         }
                 
         //File.AppendAllText(fileNameNoDate, fileWithDate + Environment.NewLine);
@@ -285,8 +304,12 @@ public class OrderingFilesV1: IOrderingFilesV1
 
         try
         {
-            var  possibleRemoveNameOfFile = ReplacementForSshPathVolumnes(fileModel.FullPathOfFile);
-        
+
+            var  possibleRemoveNameOfFile = fileModel.CorrectBashFullFileName;
+            if (string.IsNullOrEmpty(fileModel.CorrectBashFullFileName))
+            {
+                possibleRemoveNameOfFile = ReplacementForSshPathVolumes(fileModel.FullPathOfFile);
+            }
             IBashCommandsForImages bashCommandsForImages = new BashCommandsForImages(_sshServices);
             var dateOfPicture =bashCommandsForImages.GetImageDate(possibleRemoveNameOfFile, out string error_);
             
@@ -423,7 +446,6 @@ public class OrderingFilesV1: IOrderingFilesV1
                 counterUnderMark++;
                 continue;
             }*/
-            
             /*if(IsNameinFile(fileModel.FileName))
             {
                 counterUnderMark++;
@@ -450,6 +472,13 @@ public class OrderingFilesV1: IOrderingFilesV1
             
             // calculate time left in minutes and seconds timespan
             var timeLeftSeconds = TimeSpan.FromMilliseconds(timeLeft);
+            
+            if(filterBusinessLogicModel.MaxFiles < counterTotal)
+            {
+                // stop timer
+                timer.Stop();
+                break;
+            }
         }
         
         ResolveTheList(needToBeCopied);
@@ -463,11 +492,12 @@ public class OrderingFilesV1: IOrderingFilesV1
         StreamWriter writer, List<Tuple<FileModel, string>> needToBeCopied, ref int counterUnderNoDate, ref int counter,
         ref int counterUnderExistsOnTarget)
     {
-        
         if (_usingSsh)
         {
-            var  possibleRemoveNameOfFile = ReplacementForSshPathVolumnes(fileModel.FullPathOfFile);
+            // todays magic
+            var  possibleRemoveNameOfFile = ReplacementForSshPathVolumes(fileModel.FullPathOfFile);
             var result = _sshServices.GetCorrectNameOfFile(possibleRemoveNameOfFile, out string error);
+            //var result = _sshServices.GetCorrectNameOfFileUsingItsPath(fileModel.FullPathOfFile, out string error);
                     
             if (string.IsNullOrEmpty(error))
             {
@@ -529,6 +559,11 @@ public class OrderingFilesV1: IOrderingFilesV1
             var newFileNamePath = Path.Combine(destinationPath, possibleNewName);
                 
             var newFileNamePathWithExtension = newFileNamePath + fileModel.GeneralFileInformation.Extension;
+            
+            if(newFileNamePathWithExtension.ToLower().Contains("nikon".ToLower()))
+            {
+                Console.WriteLine("nikon");
+            }
                 
             if (File.Exists(newFileNamePathWithExtension))
             {
@@ -554,9 +589,11 @@ public class OrderingFilesV1: IOrderingFilesV1
                 return false;
             }
                 
-            if(counter%4 ==0) // for testing
+            if(counter%24 ==0) // for testing
             {
                 ResolveTheList(needToBeCopied);
+                GC.Collect();
+                GC.WaitForPendingFinalizers();
                 needToBeCopied.Clear();
             }
                 
@@ -672,15 +709,23 @@ public class OrderingFilesV1: IOrderingFilesV1
         }     // check if file exists on destination
     }
     
+    
+    [Obsolete]
     public string ReplacementForSshPath(string path)
     {
         return path.Replace("Volumes", "volume1").Replace(" ", "\\ ");
         //return path;
     }
     
-    public string ReplacementForSshPathVolumnes(string path)
+    [Obsolete]
+    public string ReplacementForSshPathVolumes(string path)
     {
-        return path.Replace("/Volumes", "/volume1");
+        
+        //var pwd = ExecuteCommand("pwd", out error);
+        
+        
+        //return _sshServices.GetCorrectNameOfFileUsingItsPath(path, out string error);
+        return path.Replace("Volumes", "volume1");
         //return path;
     }
     
@@ -706,19 +751,28 @@ public class OrderingFilesV1: IOrderingFilesV1
             var destination2 = Directory.GetParent(destinationPath).FullName;
             
 
-            var  destinationSshProbablyRight = ReplacementForSshPathVolumnes(destination2);
+            var  destinationSshProbablyRight = ReplacementForSshPathVolumes(destination2);
             
             var sshDestination = _sshServices.GetCorrectNameOfDirectory(destinationSshProbablyRight, out string error2);
             
             
+            
             //get name of file from path
             var fileName = Path.GetFileName(destinationPath);
-            //sshDestination = Path.Combine(sshDestination, fileName);
+            
             sshDestination = sshDestination + "/" + fileName;
 
+            string command2 = "";
+            if(fileModel.CorrectBashFullFileName.Contains("'"))
+            {
+                command2 = $"cp {fileModel.CorrectBashFullFileName} \"{sshDestination}\"";
+            }
+            else
+            {
+                command2 = $"cp \"{fileModel.CorrectBashFullFileName}\" \"{sshDestination}\"";
+            }
             
-            //CopyFileWithSSh(fileModel.CorrectBashFullFileName, destinationPath);
-            string command2 = $"cp \"{fileModel.CorrectBashFullFileName}\" \"{sshDestination}\"";
+            //command2 = $"cp \"{fileModel.CorrectBashFullFileName}\" \"{sshDestination}\"";
             
             var result2 = _sshServices.ExecuteCommand(command2, out error2);
             
@@ -726,7 +780,7 @@ public class OrderingFilesV1: IOrderingFilesV1
             {
                 fileModel.CorrectBashFullFileNameDestination = sshDestination;
                 //CopyFileWithSSh(fileModel.CorrectBashFullFileName, destinationPath);
-                //command2 = $"cp \"{fileModel.CorrectBashFullFileName.Replace(" ", "\\ ")}\" \"{destination2.Replace(" ", "\\ ")}\"";
+                
             
                 //result2 = sshServices.ExecuteCommand(command2, out error2);
                 fileModel.CopiedToDestination = true;
@@ -735,17 +789,25 @@ public class OrderingFilesV1: IOrderingFilesV1
         }
         
 
-        var file = ReplacementForSshPathVolumnes(sourcePath);
-        var destination = ReplacementForSshPathVolumnes(destinationPath);
-        
-        string command = $"cp \"{file}\" \"{destination}\"";
+        var file = ReplacementForSshPathVolumes(sourcePath);
+        var destination = ReplacementForSshPathVolumes(destinationPath);
 
+        string command = "";
+        if (file.Contains("'"))
+        {
+            command = $"cp {file} \"{destination}\"";
+        }
+        else
+        {
+            command = $"cp \"{file}\" \"{destination}\"";
+        }
+           
         var hash = ProxyExecuter(command);
         
         if(hash?.Contains("cp:")== true)
         {
-            file = ReplacementForSshPathVolumnes(sourcePath).Replace(" ", "\\ ");
-            destination = ReplacementForSshPathVolumnes(destinationPath).Replace(" ", "\\ ");
+            file = ReplacementForSshPathVolumes(sourcePath).Replace(" ", "\\ ");
+            destination = ReplacementForSshPathVolumes(destinationPath).Replace(" ", "\\ ");
             
             command = $"cp \"{file}\" \"{destination}\"";
 
@@ -754,8 +816,8 @@ public class OrderingFilesV1: IOrderingFilesV1
         
         if(hash?.Contains("cp:")== true)
         {
-            file = ReplacementForSshPathVolumnes(sourcePath).Replace(" ", "*");
-            destination = ReplacementForSshPathVolumnes(destinationPath).Replace(" ", "*");
+            file = ReplacementForSshPathVolumes(sourcePath).Replace(" ", "*");
+            destination = ReplacementForSshPathVolumes(destinationPath).Replace(" ", "*");
             
             command = $"cp {file} {destination}";
 
@@ -804,10 +866,7 @@ public class OrderingFilesV1: IOrderingFilesV1
 
         var file = ReplacementForSshPath(sourcePath);
         var destination = ReplacementForSshPath(destinationPath);
-        var destinationReplacedOnlyBaseRootPath = ReplacementForSshPathVolumnes(destinationPath);
-        
-        // check if file exists on destination
-        //string command = $"ls {destination}";
+        var destinationReplacedOnlyBaseRootPath = ReplacementForSshPathVolumes(destinationPath);
         
         
         
@@ -858,7 +917,7 @@ public class OrderingFilesV1: IOrderingFilesV1
         var fileName = fullPathOfFile;
         if(userReplacement)
         {
-            fileName = ReplacementForSshPathVolumnes(fileName);
+            fileName = ReplacementForSshPathVolumes(fileName);
         }
         
         
@@ -868,6 +927,29 @@ public class OrderingFilesV1: IOrderingFilesV1
         {
             return hashi?.Split(" ")[0].ToUpper() ?? string.Empty;
         }
+        
+        //get extension
+        var extension = Path.GetExtension(fileName);
+        var extensionLower = extension.ToLower();
+        
+        // get file without extension
+        
+        fileName = fileName.Replace(extension, extensionLower);
+        commandi = $"md5sum \"{fileName}\"";
+        hashi= _sshServices.ExecuteCommand(commandi, out error);
+        if (string.IsNullOrEmpty(error))
+        {
+            return hashi?.Split(" ")[0].ToUpper() ?? string.Empty;
+        }
+
+        
+        /*commandi = $"find / -iwholename \"{fileName}\" -exec md5sum {{}} +";
+        hashi= _sshServices.ExecuteCommand(commandi, out error);
+        if (string.IsNullOrEmpty(error))
+        {
+            return hashi?.Split(" ")[0].ToUpper() ?? string.Empty;
+        }*/
+
         
         fileName = fileName.Replace(" ", "*");
         commandi = $"md5sum \"{fileName}\"";
@@ -898,7 +980,7 @@ public class OrderingFilesV1: IOrderingFilesV1
             }
         }
 
-        var file = ReplacementForSshPathVolumnes(fileModel.FullPathOfFile);
+        var file = ReplacementForSshPathVolumes(fileModel.FullPathOfFile);
         
         string command = $"md5sum \"{file}\"";
 
@@ -906,7 +988,7 @@ public class OrderingFilesV1: IOrderingFilesV1
         
         if(hash?.Contains("md5sum: can't open")== true)
         {
-            file = ReplacementForSshPathVolumnes(fileModel.FullPathOfFile).Replace(" ", "\\ ");
+            file = ReplacementForSshPathVolumes(fileModel.FullPathOfFile).Replace(" ", "\\ ");
             
             command = $"md5sum \"{file}\"";
 
@@ -916,9 +998,9 @@ public class OrderingFilesV1: IOrderingFilesV1
         
         if(hash?.Contains("md5sum: can't open")== true)
         {
-            file = ReplacementForSshPathVolumnes(fileModel.FullPathOfFile).Replace(" ", "*");
+            file = ReplacementForSshPathVolumes(fileModel.FullPathOfFile).Replace(" ", "*");
             
-            command = $"ls {file}";
+            command = $"ls '{file}'";
             
             var fileName = ProxyExecuter(command);
             if (!string.IsNullOrEmpty(fileName))
@@ -946,7 +1028,7 @@ public class OrderingFilesV1: IOrderingFilesV1
             }
             
             
-            command = $"md5sum {file}";
+            command = $"md5sum '{file}'";
 
             hash = ProxyExecuter(command);
         }

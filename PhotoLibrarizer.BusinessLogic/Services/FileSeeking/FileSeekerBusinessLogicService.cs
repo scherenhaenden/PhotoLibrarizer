@@ -1,4 +1,5 @@
 using PhotoLibrarizer.Engines.IoEngines;
+using PhotoLibrarizer.Engines.IoEngines.Seekers;
 
 namespace PhotoLibrarizer.BusinessLogic.Services.FileSeeking;
 

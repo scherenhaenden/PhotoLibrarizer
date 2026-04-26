@@ -1,5 +1,3 @@
-using DirectoryOfMetas = MetadataExtractor.Directory;
-
 namespace PhotoLibrarizer.Engines.Metadata
 {
     public interface IMetadataManager
