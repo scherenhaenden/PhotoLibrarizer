@@ -10,17 +10,17 @@ public class WaterMarker : IWaterMarker
         using (MagickImage watermarkImage = new MagickImage(watermarkFilePath))
         {
             // Determine the watermark size relative to the source image size
-            int watermarkWidth = (int)(sourceImage.Width * 0.2); // You can adjust the watermark size as needed
-            int watermarkHeight = (watermarkWidth * watermarkImage.Height) / watermarkImage.Width;
+            var watermarkWidth = (int)(sourceImage.Width * 0.2); // You can adjust the watermark size as needed
+            var watermarkHeight = (watermarkWidth * watermarkImage.Height) / watermarkImage.Width;
 
-            watermarkImage.Resize(watermarkWidth, watermarkHeight);
+            watermarkImage.Resize((uint)watermarkWidth, (uint)watermarkHeight);
 
             // Set the position of the watermark (bottom-right corner in this case)
-            int posX = sourceImage.Width - watermarkWidth - 10; // Adjust the values to position the watermark
-            int posY = sourceImage.Height - watermarkHeight - 10;
+            var posX = sourceImage.Width - watermarkWidth - 10; // Adjust the values to position the watermark
+            var posY = sourceImage.Height - watermarkHeight - 10;
 
             // Composite the watermark onto the source image
-            sourceImage.Composite(watermarkImage, posX, posY, CompositeOperator.Over);
+            sourceImage.Composite(watermarkImage, (int)posX, (int)posY, CompositeOperator.Over);
 
             // Save the watermarked image
             sourceImage.Write(outputFilePath);
@@ -35,17 +35,17 @@ public class WaterMarker : IWaterMarker
         using (MagickImage watermarkImage = new MagickImage(watermarkImageStream))
         {
             // Determine the watermark size relative to the source image size
-            int watermarkWidth = (int)(sourceImage.Width * 0.2); // You can adjust the watermark size as needed
-            int watermarkHeight = (watermarkWidth * watermarkImage.Height) / watermarkImage.Width;
+            var watermarkWidth = (int)(sourceImage.Width * 0.2); // You can adjust the watermark size as needed
+            var watermarkHeight = (watermarkWidth * watermarkImage.Height) / watermarkImage.Width;
 
-            watermarkImage.Resize(watermarkWidth, watermarkHeight);
+            watermarkImage.Resize((uint)watermarkWidth, (uint)watermarkHeight);
 
             // Set the position of the watermark (bottom-right corner in this case)
-            int posX = sourceImage.Width - watermarkWidth - 10; // Adjust the values to position the watermark
-            int posY = sourceImage.Height - watermarkHeight - 10;
+            var posX = sourceImage.Width - watermarkWidth - 10; // Adjust the values to position the watermark
+            var posY = sourceImage.Height - watermarkHeight - 10;
 
             // Composite the watermark onto the source image
-            sourceImage.Composite(watermarkImage, posX, posY, CompositeOperator.Over);
+            sourceImage.Composite(watermarkImage, (int)posX, (int)posY, CompositeOperator.Over);
 
             // Create a MemoryStream to store the watermarked image
             using (MemoryStream resultStream = new MemoryStream())
@@ -79,17 +79,17 @@ public class WaterMarker : IWaterMarker
             using (MagickImage sourceImage = new MagickImage(sourceMemoryStream.ToArray()))
             {
                 // Determine the watermark size relative to the source image size
-                int watermarkWidth = (int)(sourceImage.Width * 0.2); // You can adjust the watermark size as needed
-                int watermarkHeight = (watermarkWidth * watermarkImage.Height) / watermarkImage.Width;
+                var watermarkWidth = (int)(sourceImage.Width * 0.2); // You can adjust the watermark size as needed
+                var watermarkHeight = (watermarkWidth * watermarkImage.Height) / watermarkImage.Width;
 
-                watermarkImage.Resize(watermarkWidth, watermarkHeight);
+                watermarkImage.Resize((uint)watermarkWidth, (uint)watermarkHeight);
 
                 // Set the position of the watermark (bottom-right corner in this case)
-                int posX = sourceImage.Width - watermarkWidth - 10; // Adjust the values to position the watermark
-                int posY = sourceImage.Height - watermarkHeight - 10;
+                var posX = sourceImage.Width - watermarkWidth - 10; // Adjust the values to position the watermark
+                var posY = sourceImage.Height - watermarkHeight - 10;
 
                 // Composite the watermark onto the source image
-                sourceImage.Composite(watermarkImage, posX, posY, CompositeOperator.Over);
+                sourceImage.Composite(watermarkImage, (int)posX, (int)posY, CompositeOperator.Over);
 
                 // Create a new MemoryStream to store the watermarked image
                 

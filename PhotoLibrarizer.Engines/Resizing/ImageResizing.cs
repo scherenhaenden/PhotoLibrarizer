@@ -8,7 +8,7 @@ namespace PhotoLibrarizer.Engines.Resizing
     {
         using (var image = new MagickImage(path))
         {
-            image.Resize(width, height);
+            image.Resize((uint)width, (uint)height);
             //image.Quality = 10; // This is the Compression level.
             image.Write(newPath);
             return true;
@@ -24,7 +24,7 @@ namespace PhotoLibrarizer.Engines.Resizing
             
             using (var image = new MagickImage(input))
             {
-                image.Resize(width, height);
+                image.Resize((uint)width, (uint)height);
 
                 // Create a new MemoryStream for the output
                 var memoryStream = new MemoryStream();
