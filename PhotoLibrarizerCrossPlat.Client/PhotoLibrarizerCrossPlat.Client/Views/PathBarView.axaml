@@ -1,0 +1,15 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:PhotoLibrarizerCrossPlat.Client.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="40"
+             x:Class="PhotoLibrarizerCrossPlat.Client.Views.PathBarView"
+             x:DataType="vm:PathBarViewModel">
+    <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+        <TextBlock Text="Path: " VerticalAlignment="Center" Margin="5"/>
+        <TextBox Width="600" Text="{Binding CurrentPath}" Margin="5"/>
+        <Button Content="Go" Command="{Binding LoadPathCommand}" Margin="5"/>
+        <Button Content="Browse" Command="{Binding BrowseCommand}" Margin="5"/>
+    </StackPanel>
+</UserControl>

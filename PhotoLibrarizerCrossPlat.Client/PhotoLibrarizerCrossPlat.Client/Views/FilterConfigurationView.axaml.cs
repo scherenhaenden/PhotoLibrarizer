@@ -1,6 +1,5 @@
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using PhotoLibrarizer.Engines.Filters.Models;
 using PhotoLibrarizerCrossPlat.Client.ViewModels;
 
 namespace PhotoLibrarizerCrossPlat.Client.Views

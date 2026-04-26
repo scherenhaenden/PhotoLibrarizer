@@ -3,14 +3,43 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:vm="clr-namespace:PhotoLibrarizerCrossPlat.Client.ViewModels"
+             xmlns:converters="clr-namespace:PhotoLibrarizerCrossPlat.Client.Converters"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="PhotoLibrarizerCrossPlat.Client.Views.MainView"
-             x:DataType="vm:MainViewModel">
-  <Design.DataContext>
-    <!-- This only sets the DataContext for the previewer in an IDE,
-         to set the actual DataContext for runtime, set the DataContext property in code (look at App.axaml.cs) -->
-    <vm:MainViewModel />
-  </Design.DataContext>
+             x:DataType="vm:MainViewModel"
+             KeyDown="MainView_OnKeyDown">
+    <UserControl.Resources>
+        <converters:ByteArrayToBitmapConverter x:Key="ByteArrayToBitmapConverter"/>
+    </UserControl.Resources>
+    <DockPanel>
+        <!-- Path Bar -->
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" DockPanel.Dock="Top">
+            <TextBlock Text="Path: " VerticalAlignment="Center" Margin="5"/>
+            <TextBox Width="600" Text="{Binding CurrentPath}" Margin="5"/>
+            <Button Content="Go" Command="{Binding LoadPathCommand}" Margin="5"/>
+            <Button Content="Browse" Command="{Binding BrowseCommand}" Margin="5"/>
+        </StackPanel>
+        
+        <!-- Thumbnail Viewer -->
+        <StackPanel x:Name="ThumbnailViewer" DockPanel.Dock="Bottom" Orientation="Horizontal" Height="100" Background="LightGray">
+            <TextBlock Text="Thumbnails" FontWeight="Bold" Margin="10"/>
+            <ItemsControl ItemsSource="{Binding Thumbnails}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Image Width="80" Height="80" Source="{Binding Converter={StaticResource ByteArrayToBitmapConverter}}" Margin="5"/>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </StackPanel>
 
-  <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <!-- Main Image Display -->
+        <Grid Background="Black">
+            <Image x:Name="MainImage" Stretch="Uniform" Source="{Binding MainImage, Converter={StaticResource ByteArrayToBitmapConverter}}"/>
+        </Grid>
+    </DockPanel>
 </UserControl>

@@ -9,28 +9,29 @@ namespace PhotoLibrarizerCrossPlat.Client
     public partial class App : Application
     {
         public override void Initialize()
-    {
-        AvaloniaXamlLoader.Load(this);
-    }
+        {
+            AvaloniaXamlLoader.Load(this);
+        }
 
         public override void OnFrameworkInitializationCompleted()
-    {
-        if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
         {
-            desktop.MainWindow = new MainWindow
+            if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop)
             {
-                DataContext = new MainViewModel()
-            };
-        }
-        else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
-        {
-            singleViewPlatform.MainView = new MainView
+                desktop.MainWindow = new MainWindow()
+                {
+                    DataContext = new MainWindowViewModel()
+                };
+            }
+            else if (ApplicationLifetime is ISingleViewApplicationLifetime singleViewPlatform)
             {
-                DataContext = new MainViewModel()
-            };
-        }
+                var _eventAggregator = new EventAggregator();
+                singleViewPlatform.MainView = new MainView
+                {
+                    DataContext =  new MainViewModel(_eventAggregator)
+                };
+            }
 
-        base.OnFrameworkInitializationCompleted();
-    }
+                base.OnFrameworkInitializationCompleted();
+        }
     }
 }

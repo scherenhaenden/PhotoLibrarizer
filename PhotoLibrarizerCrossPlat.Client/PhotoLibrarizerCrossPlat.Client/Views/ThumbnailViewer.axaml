@@ -1,0 +1,45 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:PhotoLibrarizerCrossPlat.Client.Converters"
+             xmlns:i="clr-namespace:Avalonia.Xaml.Interactions.Core;assembly=Avalonia.Xaml.Interactions"
+             xmlns:ia="clr-namespace:Avalonia.Xaml.Interactivity;assembly=Avalonia.Xaml.Interactivity"
+             xmlns:viewModels="clr-namespace:PhotoLibrarizerCrossPlat.Client.ViewModels"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="100"
+             x:Class="PhotoLibrarizerCrossPlat.Client.Views.ThumbnailViewer"
+             x:DataType="viewModels:ThumbnailViewModel">
+
+    <UserControl.Resources>
+        <converters:ByteArrayToBitmapConverter x:Key="ByteArrayToBitmapConverter"/>
+    </UserControl.Resources>
+
+    <StackPanel Orientation="Horizontal" Background="LightGray">
+        <ItemsControl ItemsSource="{Binding ThumbnailsItems}">
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <StackPanel Orientation="Horizontal"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate>
+                    <Image Width="80" Height="80"
+                           Source="{Binding Thumbnail, Converter={StaticResource ByteArrayToBitmapConverter}}"
+                           Margin="5">
+                        <ia:Interaction.Behaviors>
+                            <i:EventTriggerBehavior EventName="PointerEntered">
+                                <InvokeCommandAction Command="{Binding MouseHoverCommand, RelativeSource={RelativeSource AncestorType={x:Type viewModels:ThumbnailViewModel}}}"/>
+                            </i:EventTriggerBehavior>
+                            <i:EventTriggerBehavior EventName="PointerPressed">
+                                <InvokeCommandAction Command="{Binding ClickCommand, RelativeSource={RelativeSource AncestorType={x:Type viewModels:ThumbnailViewModel}}}"/>
+                            </i:EventTriggerBehavior>
+                            <i:EventTriggerBehavior EventName="PointerReleased">
+                                <InvokeCommandAction Command="{Binding DoubleClickCommand, RelativeSource={RelativeSource AncestorType={x:Type viewModels:ThumbnailViewModel}}}"/>
+                            </i:EventTriggerBehavior>
+                        </ia:Interaction.Behaviors>
+                    </Image>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+        </ItemsControl>
+    </StackPanel>
+</UserControl>

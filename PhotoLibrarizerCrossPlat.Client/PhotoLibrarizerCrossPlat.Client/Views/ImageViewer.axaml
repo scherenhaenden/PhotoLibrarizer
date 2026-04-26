@@ -1,0 +1,37 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:vm="clr-namespace:PhotoLibrarizerCrossPlat.Client.ViewModels"
+             xmlns:converters="clr-namespace:PhotoLibrarizerCrossPlat.Client.Converters"
+             xmlns:views="clr-namespace:PhotoLibrarizerCrossPlat.Client.Views"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="PhotoLibrarizerCrossPlat.Client.Views.ImageViewer"
+             x:DataType="vm:ImageViewerViewModel">
+    <UserControl.Resources>
+        <converters:ByteArrayToBitmapConverter x:Key="ByteArrayToBitmapConverter"/>
+    </UserControl.Resources>
+
+    <DockPanel>
+        <!-- Metadata Sidebar -->
+        <StackPanel x:Name="MetadataSidebar" DockPanel.Dock="Left" Width="200" Background="LightGray">
+            <TextBlock Text="Metadata" FontWeight="Bold" Margin="10"/>
+            <TextBlock x:Name="FileNameText" Margin="10"/>
+            <TextBlock x:Name="FileSizeText" Margin="10"/>
+            <TextBlock x:Name="FileDateText" Margin="10"/>
+        </StackPanel>
+
+        <!-- Thumbnail Viewer -->
+        <ScrollViewer DockPanel.Dock="Bottom" Height="100" HorizontalScrollBarVisibility="Auto">
+            <views:ThumbnailViewer 
+                x:Name="ImagesThumbnailViewer"
+                Background="LightGray"
+                DataContext="{Binding ThumbnailViewMo}"/>
+        </ScrollViewer>
+
+        <!-- Main Image Display -->
+        <Grid Background="Black">
+            <Image x:Name="MainImage" Stretch="Uniform" Source="{Binding MainImage, Converter={StaticResource ByteArrayToBitmapConverter}}"/>
+        </Grid>
+    </DockPanel>
+</UserControl>
